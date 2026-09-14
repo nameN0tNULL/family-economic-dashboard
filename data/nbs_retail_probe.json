@@ -1,0 +1,106 @@
+{
+  "collected_at": "2026-09-14T16:02:13+00:00",
+  "root_id": "f4c6cd795fea436c807163397dd36b98",
+  "trade_branch": {
+    "name": "国内贸易",
+    "cid": "17c50dad9aa74e058565f47e555f3bda"
+  },
+  "checks": [
+    {
+      "node": "国内贸易",
+      "cid": "17c50dad9aa74e058565f47e555f3bda",
+      "indicators": [],
+      "dates_response": {
+        "data": {
+          "dt_all": "202608MM",
+          "dt_name": "2026年8月"
+        },
+        "success": true,
+        "state": 20000,
+        "message": "成功"
+      }
+    },
+    {
+      "node": "社会消费品零售总额 (-201012) ",
+      "cid": "d6ef72e5c47b4683bbc6011816aa71f7",
+      "indicators": [
+        {
+          "id": "68b43da118634c51b45f8d52760e2579",
+          "label": "社会消费品零售总额累计增长 (%)",
+          "unit": "%"
+        }
+      ],
+      "dates_response": {
+        "data": {
+          "dt_all": "201012MM",
+          "dt_name": "2010年12月"
+        },
+        "success": true,
+        "state": 20000,
+        "message": "成功"
+      }
+    }
+  ],
+  "fetch_attempts": [
+    {
+      "node": "社会消费品零售总额 (-201012) ",
+      "cid": "d6ef72e5c47b4683bbc6011816aa71f7",
+      "indicator_id": "68b43da118634c51b45f8d52760e2579",
+      "indicator_label": "社会消费品零售总额累计增长 (%)",
+      "state": 20000,
+      "message": "成功",
+      "values": [
+        {
+          "period": "202607MM",
+          "area": "北京市",
+          "areaCode": "110000000000",
+          "value": "",
+          "label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "area": "天津市",
+          "areaCode": "120000000000",
+          "value": "",
+          "label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "area": "河北省",
+          "areaCode": "130000000000",
+          "value": "",
+          "label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "area": "上海市",
+          "areaCode": "310000000000",
+          "value": "",
+          "label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "area": "江苏省",
+          "areaCode": "320000000000",
+          "value": "",
+          "label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "area": "浙江省",
+          "areaCode": "330000000000",
+          "value": "",
+          "label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "area": "安徽省",
+          "areaCode": "340000000000",
+          "value": "",
+          "label": "社会消费品零售总额累计增长 (%) "
+        }
+      ],
+      "non_blank": 0
+    }
+  ]
+}
