@@ -1,0 +1,85 @@
+{
+  "collected_at": "2026-09-14T16:04:04+00:00",
+  "source": "国家统计局-分省月度数据",
+  "endpoint": "https://data.stats.gov.cn/dg/website/publicrelease/web/external/stream/esData",
+  "root_id": "f4c6cd795fea436c807163397dd36b98",
+  "regions": [
+    {
+      "name": "北京市",
+      "code": "110000000000",
+      "cluster": "jing_jin_ji"
+    },
+    {
+      "name": "天津市",
+      "code": "120000000000",
+      "cluster": "jing_jin_ji"
+    },
+    {
+      "name": "河北省",
+      "code": "130000000000",
+      "cluster": "jing_jin_ji"
+    },
+    {
+      "name": "上海市",
+      "code": "310000000000",
+      "cluster": "yangtze_river_delta"
+    },
+    {
+      "name": "江苏省",
+      "code": "320000000000",
+      "cluster": "yangtze_river_delta"
+    },
+    {
+      "name": "浙江省",
+      "code": "330000000000",
+      "cluster": "yangtze_river_delta"
+    },
+    {
+      "name": "安徽省",
+      "code": "340000000000",
+      "cluster": "yangtze_river_delta"
+    }
+  ],
+  "series": {
+    "industrial_growth": {
+      "cid": "9593fb551802499683f758e0f6f45bc7",
+      "indicator_id": "e2da5a05def84138b9d33828951adc59",
+      "label": "工业增加值累计增长 (%)",
+      "unit": "%",
+      "latest_catalog_period": "202608",
+      "latest_nonblank_date": "2026-07-31",
+      "regions_on_latest_nonblank_date": [
+        "上海市",
+        "北京市",
+        "天津市",
+        "安徽省",
+        "江苏省",
+        "河北省",
+        "浙江省"
+      ],
+      "rows_collected": 14
+    },
+    "fixed_asset_investment_growth": {
+      "cid": "e43af1a71b2d4a768569866795ed66e2",
+      "indicator_id": "31c20d4e16564c39a3e4d2cc0d2d83bb",
+      "label": "固定资产投资完成额累计增长 (%)",
+      "unit": "%",
+      "latest_catalog_period": "202608",
+      "latest_nonblank_date": "2026-07-31",
+      "regions_on_latest_nonblank_date": [
+        "上海市",
+        "北京市",
+        "天津市",
+        "安徽省",
+        "江苏省",
+        "河北省",
+        "浙江省"
+      ],
+      "rows_collected": 14
+    }
+  },
+  "notes": [
+    "Current provincial retail-sales series is not available in NBS fsMonthData; retail remains a separate local-source fallback.",
+    "The only retail child found under 国内贸易 is marked (-201012) and ends at 2010-12."
+  ]
+}
