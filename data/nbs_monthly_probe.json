@@ -1,0 +1,307 @@
+{
+  "collected_at": "2026-09-14T15:55:37+00:00",
+  "page": "fsMonthData",
+  "page_code": 4,
+  "root_id": "f4c6cd795fea436c807163397dd36b98",
+  "root_name": "分省月度数据",
+  "period_requested": "202607",
+  "source_project_reference": "cclyfblink/nbs_fetcher",
+  "results": {
+    "industrial_growth": {
+      "resolved": {
+        "cid": "9593fb551802499683f758e0f6f45bc7",
+        "node_name": "工业增加值增长速度",
+        "path": [
+          "工业",
+          "工业增加值增长速度"
+        ],
+        "indicator_id": "e2da5a05def84138b9d33828951adc59",
+        "indicator_label": "工业增加值累计增长 (%)",
+        "unit": "%",
+        "candidate_attempts": [
+          {
+            "cid": "9593fb551802499683f758e0f6f45bc7",
+            "name": "工业增加值增长速度",
+            "path": [
+              "工业",
+              "工业增加值增长速度"
+            ],
+            "depth": 2,
+            "score": 18,
+            "indicator_labels": [
+              "工业增加值同比增长 (%)",
+              "工业增加值累计增长 (%)"
+            ]
+          }
+        ],
+        "visited_count": 65
+      },
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "rows": [
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "北京市",
+          "region_code": "110000000000",
+          "value": "4.7",
+          "unit": "%",
+          "indicator_label": "工业增加值累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "天津市",
+          "region_code": "120000000000",
+          "value": "4.0",
+          "unit": "%",
+          "indicator_label": "工业增加值累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "河北省",
+          "region_code": "130000000000",
+          "value": "5.5",
+          "unit": "%",
+          "indicator_label": "工业增加值累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "上海市",
+          "region_code": "310000000000",
+          "value": "5.5",
+          "unit": "%",
+          "indicator_label": "工业增加值累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "江苏省",
+          "region_code": "320000000000",
+          "value": "6.6",
+          "unit": "%",
+          "indicator_label": "工业增加值累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "浙江省",
+          "region_code": "330000000000",
+          "value": "7.9",
+          "unit": "%",
+          "indicator_label": "工业增加值累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "安徽省",
+          "region_code": "340000000000",
+          "value": "12.7",
+          "unit": "%",
+          "indicator_label": "工业增加值累计增长 (%) "
+        }
+      ]
+    },
+    "fixed_asset_investment_growth": {
+      "resolved": {
+        "cid": "e43af1a71b2d4a768569866795ed66e2",
+        "node_name": "固定资产投资增速情况",
+        "path": [
+          "固定资产投资 (不含农户) ",
+          "固定资产投资增速情况"
+        ],
+        "indicator_id": "31c20d4e16564c39a3e4d2cc0d2d83bb",
+        "indicator_label": "固定资产投资完成额累计增长 (%)",
+        "unit": "%",
+        "candidate_attempts": [
+          {
+            "cid": "e43af1a71b2d4a768569866795ed66e2",
+            "name": "固定资产投资增速情况",
+            "path": [
+              "固定资产投资 (不含农户) ",
+              "固定资产投资增速情况"
+            ],
+            "depth": 2,
+            "score": 19,
+            "indicator_labels": [
+              "固定资产投资完成额累计增长 (%)",
+              "建筑安装工程固定资产投资完成额累计增长 (%)",
+              "设备工器具购置固定资产投资完成额累计增长 (%)",
+              "其他费用固定资产投资完成额累计增长 (%)"
+            ]
+          }
+        ],
+        "visited_count": 3
+      },
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "rows": [
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "北京市",
+          "region_code": "110000000000",
+          "value": "4.3",
+          "unit": "%",
+          "indicator_label": "固定资产投资完成额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "天津市",
+          "region_code": "120000000000",
+          "value": "-11.9",
+          "unit": "%",
+          "indicator_label": "固定资产投资完成额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "河北省",
+          "region_code": "130000000000",
+          "value": "0.3",
+          "unit": "%",
+          "indicator_label": "固定资产投资完成额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "上海市",
+          "region_code": "310000000000",
+          "value": "5.5",
+          "unit": "%",
+          "indicator_label": "固定资产投资完成额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "江苏省",
+          "region_code": "320000000000",
+          "value": "-9.5",
+          "unit": "%",
+          "indicator_label": "固定资产投资完成额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "浙江省",
+          "region_code": "330000000000",
+          "value": "-8.5",
+          "unit": "%",
+          "indicator_label": "固定资产投资完成额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "安徽省",
+          "region_code": "340000000000",
+          "value": "-13.1",
+          "unit": "%",
+          "indicator_label": "固定资产投资完成额累计增长 (%) "
+        }
+      ]
+    },
+    "retail_sales_growth": {
+      "resolved": {
+        "cid": "d6ef72e5c47b4683bbc6011816aa71f7",
+        "node_name": "社会消费品零售总额 (-201012) ",
+        "path": [
+          "国内贸易",
+          "社会消费品零售总额 (-201012) "
+        ],
+        "indicator_id": "68b43da118634c51b45f8d52760e2579",
+        "indicator_label": "社会消费品零售总额累计增长 (%)",
+        "unit": "%",
+        "candidate_attempts": [
+          {
+            "cid": "d6ef72e5c47b4683bbc6011816aa71f7",
+            "name": "社会消费品零售总额 (-201012) ",
+            "path": [
+              "国内贸易",
+              "社会消费品零售总额 (-201012) "
+            ],
+            "depth": 2,
+            "score": 19,
+            "indicator_labels": [
+              "社会消费品零售总额累计增长 (%)"
+            ]
+          }
+        ],
+        "visited_count": 2
+      },
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "rows": [
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "北京市",
+          "region_code": "110000000000",
+          "value": "",
+          "unit": "%",
+          "indicator_label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "天津市",
+          "region_code": "120000000000",
+          "value": "",
+          "unit": "%",
+          "indicator_label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "jing_jin_ji",
+          "region": "河北省",
+          "region_code": "130000000000",
+          "value": "",
+          "unit": "%",
+          "indicator_label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "上海市",
+          "region_code": "310000000000",
+          "value": "",
+          "unit": "%",
+          "indicator_label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "江苏省",
+          "region_code": "320000000000",
+          "value": "",
+          "unit": "%",
+          "indicator_label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "浙江省",
+          "region_code": "330000000000",
+          "value": "",
+          "unit": "%",
+          "indicator_label": "社会消费品零售总额累计增长 (%) "
+        },
+        {
+          "period": "202607MM",
+          "cluster": "yangtze_river_delta",
+          "region": "安徽省",
+          "region_code": "340000000000",
+          "value": "",
+          "unit": "%",
+          "indicator_label": "社会消费品零售总额累计增长 (%) "
+        }
+      ]
+    }
+  },
+  "errors": []
+}

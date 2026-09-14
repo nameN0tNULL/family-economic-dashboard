@@ -1,0 +1,212 @@
+[
+  {
+    "indicator": "industrial_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "北京市",
+    "region_code": "110000000000",
+    "value": "4.7",
+    "unit": "%",
+    "indicator_label": "工业增加值累计增长 (%) "
+  },
+  {
+    "indicator": "industrial_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "天津市",
+    "region_code": "120000000000",
+    "value": "4.0",
+    "unit": "%",
+    "indicator_label": "工业增加值累计增长 (%) "
+  },
+  {
+    "indicator": "industrial_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "河北省",
+    "region_code": "130000000000",
+    "value": "5.5",
+    "unit": "%",
+    "indicator_label": "工业增加值累计增长 (%) "
+  },
+  {
+    "indicator": "industrial_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "上海市",
+    "region_code": "310000000000",
+    "value": "5.5",
+    "unit": "%",
+    "indicator_label": "工业增加值累计增长 (%) "
+  },
+  {
+    "indicator": "industrial_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "江苏省",
+    "region_code": "320000000000",
+    "value": "6.6",
+    "unit": "%",
+    "indicator_label": "工业增加值累计增长 (%) "
+  },
+  {
+    "indicator": "industrial_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "浙江省",
+    "region_code": "330000000000",
+    "value": "7.9",
+    "unit": "%",
+    "indicator_label": "工业增加值累计增长 (%) "
+  },
+  {
+    "indicator": "industrial_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "安徽省",
+    "region_code": "340000000000",
+    "value": "12.7",
+    "unit": "%",
+    "indicator_label": "工业增加值累计增长 (%) "
+  },
+  {
+    "indicator": "fixed_asset_investment_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "北京市",
+    "region_code": "110000000000",
+    "value": "4.3",
+    "unit": "%",
+    "indicator_label": "固定资产投资完成额累计增长 (%) "
+  },
+  {
+    "indicator": "fixed_asset_investment_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "天津市",
+    "region_code": "120000000000",
+    "value": "-11.9",
+    "unit": "%",
+    "indicator_label": "固定资产投资完成额累计增长 (%) "
+  },
+  {
+    "indicator": "fixed_asset_investment_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "河北省",
+    "region_code": "130000000000",
+    "value": "0.3",
+    "unit": "%",
+    "indicator_label": "固定资产投资完成额累计增长 (%) "
+  },
+  {
+    "indicator": "fixed_asset_investment_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "上海市",
+    "region_code": "310000000000",
+    "value": "5.5",
+    "unit": "%",
+    "indicator_label": "固定资产投资完成额累计增长 (%) "
+  },
+  {
+    "indicator": "fixed_asset_investment_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "江苏省",
+    "region_code": "320000000000",
+    "value": "-9.5",
+    "unit": "%",
+    "indicator_label": "固定资产投资完成额累计增长 (%) "
+  },
+  {
+    "indicator": "fixed_asset_investment_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "浙江省",
+    "region_code": "330000000000",
+    "value": "-8.5",
+    "unit": "%",
+    "indicator_label": "固定资产投资完成额累计增长 (%) "
+  },
+  {
+    "indicator": "fixed_asset_investment_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "安徽省",
+    "region_code": "340000000000",
+    "value": "-13.1",
+    "unit": "%",
+    "indicator_label": "固定资产投资完成额累计增长 (%) "
+  },
+  {
+    "indicator": "retail_sales_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "北京市",
+    "region_code": "110000000000",
+    "value": "",
+    "unit": "%",
+    "indicator_label": "社会消费品零售总额累计增长 (%) "
+  },
+  {
+    "indicator": "retail_sales_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "天津市",
+    "region_code": "120000000000",
+    "value": "",
+    "unit": "%",
+    "indicator_label": "社会消费品零售总额累计增长 (%) "
+  },
+  {
+    "indicator": "retail_sales_growth",
+    "period": "202607MM",
+    "cluster": "jing_jin_ji",
+    "region": "河北省",
+    "region_code": "130000000000",
+    "value": "",
+    "unit": "%",
+    "indicator_label": "社会消费品零售总额累计增长 (%) "
+  },
+  {
+    "indicator": "retail_sales_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "上海市",
+    "region_code": "310000000000",
+    "value": "",
+    "unit": "%",
+    "indicator_label": "社会消费品零售总额累计增长 (%) "
+  },
+  {
+    "indicator": "retail_sales_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "江苏省",
+    "region_code": "320000000000",
+    "value": "",
+    "unit": "%",
+    "indicator_label": "社会消费品零售总额累计增长 (%) "
+  },
+  {
+    "indicator": "retail_sales_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "浙江省",
+    "region_code": "330000000000",
+    "value": "",
+    "unit": "%",
+    "indicator_label": "社会消费品零售总额累计增长 (%) "
+  },
+  {
+    "indicator": "retail_sales_growth",
+    "period": "202607MM",
+    "cluster": "yangtze_river_delta",
+    "region": "安徽省",
+    "region_code": "340000000000",
+    "value": "",
+    "unit": "%",
+    "indicator_label": "社会消费品零售总额累计增长 (%) "
+  }
+]

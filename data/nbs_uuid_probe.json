@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-14T15:48:45+00:00",
+  "collected_at": "2026-09-14T15:55:37+00:00",
   "endpoint": "https://data.stats.gov.cn/dg/website/publicrelease/web/external/stream/esData",
   "source_project_references": [
     "Ayanya-0628/nbs-prov",
