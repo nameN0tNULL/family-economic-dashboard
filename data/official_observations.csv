@@ -1,7 +1,9 @@
 date,indicator,value,note,source_url,collected_at
+2026-07-31,industrial_receivables_days,71.9,2026年1—7月份全国规模以上工业企业利润增长17.6%；规上工业应收账款平均回收期,https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html,2026-09-14T09:46:32+00:00
 2026-07-31,national_land_sale_revenue_yoy,-30.8,2026年1-7月财政收支情况；全国国有土地使用权出让收入同比,https://gks.mof.gov.cn/tongjishuju/202608/t20260814_3995497.htm,2026-09-14T09:42:11+00:00
 2026-07-31,national_local_fiscal_revenue_yoy,3.3,2026年1-7月财政收支情况；全国地方一般公共预算本级收入同比,https://gks.mof.gov.cn/tongjishuju/202608/t20260814_3995497.htm,2026-09-14T09:42:11+00:00
-2026-07-31,private_investment,-9.4,1—7月份国民经济保持总体平稳、向新向优发展态势；官方披露同比,https://www.stats.gov.cn/sj/zxfb/202608/t20260817_1965056.html,2026-09-14T09:42:50+00:00
-2026-07-31,urban_unemployment_rate,5.2,1—7月份国民经济保持总体平稳、向新向优发展态势；月度城镇调查失业率,https://www.stats.gov.cn/sj/zxfb/202608/t20260817_1965056.html,2026-09-14T09:42:50+00:00
-2026-08-31,corp_long_term_loans,56400,2026年8月金融统计数据报告；年内累计新增，统一换算为亿元,https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html,2026-09-14T09:42:50+00:00
-2026-08-31,household_long_term_loans,188,2026年8月金融统计数据报告；年内累计新增，统一换算为亿元,https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html,2026-09-14T09:42:50+00:00
+2026-07-31,private_investment,-9.4,1—7月份国民经济保持总体平稳、向新向优发展态势；官方披露同比,https://www.stats.gov.cn/sj/zxfb/202608/t20260817_1965056.html,2026-09-14T09:45:56+00:00
+2026-07-31,private_profit,10.9,2026年1—7月份全国规模以上工业企业利润增长17.6%；私营工业企业利润同比,https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html,2026-09-14T09:46:32+00:00
+2026-07-31,urban_unemployment_rate,5.2,1—7月份国民经济保持总体平稳、向新向优发展态势；月度城镇调查失业率,https://www.stats.gov.cn/sj/zxfb/202608/t20260817_1965056.html,2026-09-14T09:45:56+00:00
+2026-08-31,corp_long_term_loans,56400,2026年8月金融统计数据报告；年内累计新增，统一换算为亿元,https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html,2026-09-14T09:45:56+00:00
+2026-08-31,household_long_term_loans,188,2026年8月金融统计数据报告；年内累计新增，统一换算为亿元,https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html,2026-09-14T09:45:56+00:00

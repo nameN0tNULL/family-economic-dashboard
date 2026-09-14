@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-14T09:42:50+00:00",
+  "collected_at": "2026-09-14T09:46:32+00:00",
   "sources": [
     {
       "source": "国家统计局-国民经济运行",
@@ -20,17 +20,23 @@
         "household_long_term_loans",
         "corp_long_term_loans"
       ]
+    },
+    {
+      "source": "国家统计局-工业企业利润",
+      "title": "2026年1—7月份全国规模以上工业企业利润增长17.6%",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
+      "period": "2026-07-31",
+      "indicators": [
+        "private_profit",
+        "industrial_receivables_days"
+      ]
     }
   ],
   "errors": [
-    {
-      "source": "nbs_profit",
-      "error": "ValueError: Pattern did not match: 私营企业实现利润总额[^。]*?同比(增长|下降)([0-9.]+)%"
-    },
     {
       "source": "mof",
       "error": "HTTPError: HTTP Error 502: Bad Gateway"
     }
   ],
-  "observation_count": 4
+  "observation_count": 6
 }
