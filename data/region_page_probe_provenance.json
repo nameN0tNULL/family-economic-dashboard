@@ -1,0 +1,136 @@
+{
+  "collected_at": "2026-09-14T15:27:24+00:00",
+  "purpose": "GitHub Hosted Runner reachability and parser validation for regional official sources",
+  "accessible_region_count": 4,
+  "accessible_regions": [
+    "上海",
+    "北京",
+    "天津",
+    "江苏"
+  ],
+  "metric_row_count": 9,
+  "checks": [
+    {
+      "region": "北京",
+      "cluster": "jing_jin_ji",
+      "kind": "current_release",
+      "url": "https://tjj.beijing.gov.cn/tjsj_31433/sjjd_31444/202608/t20260818_4826859.html",
+      "status": "ok",
+      "text_length": 7814,
+      "metrics_expected": [
+        "fixed_asset_investment_growth",
+        "industrial_growth",
+        "retail_sales_growth"
+      ],
+      "metrics_parsed": {
+        "industrial_growth": 4.7,
+        "fixed_asset_investment_growth": 4.3,
+        "retail_sales_growth": -2.0
+      },
+      "sample": "var _yfx_nodeid = \"31444\"; var _yfx_contentid = \"4826859\"; var _yfx_title = \"2026年1-7月北京经济运行情况\"; var _yfx_editor = \"\"; var _yfx_pubtime = \"2026-08-18 10:00\"; 2026年1-7月北京经济运行情况 .ue_table table tbody tr td p a span{color:r"
+    },
+    {
+      "region": "天津",
+      "cluster": "jing_jin_ji",
+      "kind": "current_release",
+      "url": "https://www.tj.gov.cn/sq/zfsj/sjfb/202608/t20260820_7355185.html",
+      "status": "ok",
+      "text_length": 10310,
+      "metrics_expected": [
+        "fixed_asset_investment_growth",
+        "industrial_growth",
+        "retail_sales_growth"
+      ],
+      "metrics_parsed": {},
+      "sample": "1—7月份我市国民经济运行简况_数据发布_天津政务网 $(function(){ $(\".p-fbsj\").text($(\".p-fbsj\").text().substring(0,21)); }); 中央政府门户网站----年--月--日 星期 - English 无障碍 长者模式 繁体 English| 个人中心| function openToolbarByMouse(){ if(window.location==top.loca"
+    },
+    {
+      "region": "河北",
+      "cluster": "jing_jin_ji",
+      "kind": "index_reachability",
+      "url": "https://tjj.hebei.gov.cn/",
+      "status": "error",
+      "error": "URLError: <urlopen error [Errno 101] Network is unreachable>"
+    },
+    {
+      "region": "上海",
+      "cluster": "yangtze_river_delta",
+      "kind": "industrial_release",
+      "url": "https://tjj.sh.gov.cn/sjxx/20260813/b3771ac855a246a4b2d47786c37f4b25.html",
+      "status": "ok",
+      "text_length": 2346,
+      "metrics_expected": [
+        "industrial_output_growth"
+      ],
+      "metrics_parsed": {
+        "industrial_output_growth": 4.2
+      },
+      "sample": "2026年1-7月本市规模以上工业企业生产情况_数据信息_上海市统计局 数据发布 您所在的位置： 首页 统计数据 数据信息 字号 大 中 小 分享 2026年1-7月本市规模以上工业企业生产情况 2026-08-19 2026年1-7月本市规模以上工业企业生产情况 2026年1-7月，我市规模以上工业（以下简称工业）企业完成工业总产值23788.04亿元，比去年同期增长4.2%。 工业产销率为98.0%，比去年同期下降0.9个百分点。工"
+    },
+    {
+      "region": "上海",
+      "cluster": "yangtze_river_delta",
+      "kind": "investment_release",
+      "url": "https://tjj.sh.gov.cn/sjxx/20260817/150e0926688d4e94bb631e12fcbb030a.html",
+      "status": "ok",
+      "text_length": 2388,
+      "metrics_expected": [
+        "fixed_asset_investment_growth"
+      ],
+      "metrics_parsed": {
+        "fixed_asset_investment_growth": 5.5
+      },
+      "sample": "2026年1-7月本市固定资产投资同比增长5.5%_数据信息_上海市统计局 数据发布 您所在的位置： 首页 统计数据 数据信息 字号 大 中 小 分享 2026年1-7月本市固定资产投资同比增长5.5% 2026-08-18 1-7月，本市全社会固定资产投资比去年同期增长5.5%。 三大投资领域中，城市基础设施投资比去年同期增长24.2%；工业投资增长20.1%；房地产开发投资下降6.8%。 全市三大产业投资中，第一产业投资比去年同期增"
+    },
+    {
+      "region": "上海",
+      "cluster": "yangtze_river_delta",
+      "kind": "retail_release",
+      "url": "https://tjj.sh.gov.cn/ydsj51/20260814/0e4a771b6d0b4d8f99f99d9c9cf4a65a.html",
+      "status": "ok",
+      "text_length": 3016,
+      "metrics_expected": [
+        "retail_sales_growth"
+      ],
+      "metrics_parsed": {
+        "retail_sales_growth": 7.0
+      },
+      "sample": "2026年7月社会消费品零售总额_社会消费品零售总额_上海市统计局 您所在的位置： 首页 统计数据 统计数据 社会消费品零售总额 字号 大 中 小 分享 2026年7月社会消费品零售总额 2026-08-19 社会消费品零售总额 2026年1-7月 指标 7月（亿元） 比去年同月增长（%） 1-7月（亿元） 比去年同期增长（%） 社会消费品零售总额 1209.78 -6.3 9529.51 -0.2 限额以上单位主要商品零售情况 其中："
+    },
+    {
+      "region": "江苏",
+      "cluster": "yangtze_river_delta",
+      "kind": "current_release",
+      "url": "https://tj.jiangsu.gov.cn/art/2026/8/24/art_85275_11819992.html",
+      "status": "ok",
+      "text_length": 1040,
+      "metrics_expected": [
+        "fixed_asset_investment_growth",
+        "industrial_growth",
+        "retail_sales_growth"
+      ],
+      "metrics_parsed": {
+        "industrial_growth": 6.6,
+        "fixed_asset_investment_growth": -9.5,
+        "retail_sales_growth": 1.1
+      },
+      "sample": "江苏省统计局 数据发布 1—7月全省经济运行简况 .standard18 .bt-box-main-txt p { margin-bottom: 0; } 首页 > 统计数据 > 数据发布 1—7月全省经济运行简况 2026-08-24 18:00 来源：国民经济综合统计处 今年以来，全省上下坚持稳中求进工作总基调，下功夫研究新情况、解决新问题，加快推动各项宏观政策有效落地，1—7月全省经济运行总体平稳、稳中有进，呈现动能向新、结构向优"
+    },
+    {
+      "region": "浙江",
+      "cluster": "yangtze_river_delta",
+      "kind": "index_reachability",
+      "url": "https://tjj.zj.gov.cn/col/col1525492/index.html",
+      "status": "error",
+      "error": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>"
+    },
+    {
+      "region": "安徽",
+      "cluster": "yangtze_river_delta",
+      "kind": "index_reachability",
+      "url": "https://tjj.ah.gov.cn/",
+      "status": "error",
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    }
+  ]
+}
