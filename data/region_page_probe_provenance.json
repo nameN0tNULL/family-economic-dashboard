@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-14T15:29:36+00:00",
+  "collected_at": "2026-09-14T15:30:56+00:00",
   "purpose": "GitHub Hosted Runner reachability and parser validation for regional official sources",
   "accessible_region_count": 4,
   "accessible_regions": [
@@ -8,7 +8,7 @@
     "天津",
     "江苏"
   ],
-  "metric_row_count": 9,
+  "metric_row_count": 12,
   "checks": [
     {
       "region": "北京",
@@ -41,7 +41,11 @@
         "industrial_growth",
         "retail_sales_growth"
       ],
-      "metrics_parsed": {},
+      "metrics_parsed": {
+        "industrial_growth": 4.0,
+        "fixed_asset_investment_growth": -11.9,
+        "retail_sales_growth": 1.0
+      },
       "sample": "1—7月份我市国民经济运行简况_数据发布_天津政务网 $(function(){ $(\".p-fbsj\").text($(\".p-fbsj\").text().substring(0,21)); }); 中央政府门户网站----年--月--日 星期 - English 无障碍 长者模式 繁体 English| 个人中心| function openToolbarByMouse(){ if(window.location==top.loca"
     },
     {
@@ -93,7 +97,7 @@
         "retail_sales_growth"
       ],
       "metrics_parsed": {
-        "retail_sales_growth": 7.0
+        "retail_sales_growth": -19.0
       },
       "sample": "2026年7月社会消费品零售总额_社会消费品零售总额_上海市统计局 您所在的位置： 首页 统计数据 统计数据 社会消费品零售总额 字号 大 中 小 分享 2026年7月社会消费品零售总额 2026-08-19 社会消费品零售总额 2026年1-7月 指标 7月（亿元） 比去年同月增长（%） 1-7月（亿元） 比去年同期增长（%） 社会消费品零售总额 1209.78 -6.3 9529.51 -0.2 限额以上单位主要商品零售情况 其中："
     },
