@@ -1,0 +1,52 @@
+name: Collect official data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 10:30 China Standard Time on the 23rd of every month (02:30 UTC).
+    # This is late enough to usually include NBS, PBC and MOF monthly releases.
+    - cron: "30 2 23 * *"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/collect.yml"
+      - "family_economic_dashboard/collect.py"
+      - "config/sources.json"
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test
+        run: python -m unittest discover -s tests -v
+      - name: Collect public official statistics
+        run: python -m family_economic_dashboard.collect
+      - name: Build dashboard from collected data
+        run: python -m family_economic_dashboard.cli --output dist
+      - name: Commit collected observations
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/official_observations.csv data/provenance.json
+          if git diff --cached --quiet; then
+            echo "No observation changes"
+          else
+            git commit -m "data: collect latest official statistics"
+            git push
+          fi
+      - name: Upload collection artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-data-collection
+          path: |
+            data/official_observations.csv
+            data/provenance.json
+            dist/
+          retention-days: 90
