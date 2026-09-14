@@ -1,6 +1,16 @@
 {
-  "collected_at": "2026-09-14T09:40:39+00:00",
+  "collected_at": "2026-09-14T09:42:11+00:00",
   "sources": [
+    {
+      "source": "财政部-全国财政收支",
+      "title": "2026年1-7月财政收支情况",
+      "url": "https://gks.mof.gov.cn/tongjishuju/202608/t20260814_3995497.htm",
+      "period": "2026-07-31",
+      "indicators": [
+        "national_local_fiscal_revenue_yoy",
+        "national_land_sale_revenue_yoy"
+      ]
+    },
     {
       "source": "中国人民银行-金融统计数据报告",
       "title": "2026年8月金融统计数据报告",
@@ -20,11 +30,7 @@
     {
       "source": "nbs_profit",
       "error": "ValueError: Pattern did not match: 私营企业实现利润总额[^。]*?同比(增长|下降)([0-9.]+)%"
-    },
-    {
-      "source": "mof",
-      "error": "HTTPError: HTTP Error 502: Bad Gateway"
     }
   ],
-  "observation_count": 2
+  "observation_count": 4
 }
