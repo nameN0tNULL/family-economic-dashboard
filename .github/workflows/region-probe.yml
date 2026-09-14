@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/region-probe.yml"
       - "family_economic_dashboard/collect_regions.py"
+      - "family_economic_dashboard/probe_region_pages.py"
 
 permissions:
   contents: write
@@ -20,21 +21,26 @@ jobs:
         with:
           python-version: "3.12"
       - name: Probe NBS province-monthly data
+        continue-on-error: true
         run: python -m family_economic_dashboard.collect_regions
-      - name: Show probe summary
+      - name: Probe provincial official pages
+        run: python -m family_economic_dashboard.probe_region_pages
+      - name: Show provincial probe summary
         run: |
-          cat data/region_probe_provenance.json
-          echo "--- latest rows ---"
-          tail -n 25 data/region_probe.csv
+          cat data/region_page_probe_provenance.json
+          echo "--- parsed rows ---"
+          cat data/region_page_probe.csv
       - name: Commit probe result
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/region_probe.csv data/region_probe_provenance.json
+          git add data/region_page_probe.csv data/region_page_probe_provenance.json
+          if [ -f data/region_probe.csv ]; then git add data/region_probe.csv; fi
+          if [ -f data/region_probe_provenance.json ]; then git add data/region_probe_provenance.json; fi
           if git diff --cached --quiet; then
             echo "No regional probe changes"
           else
-            git commit -m "data: validate regional NBS sources"
+            git commit -m "data: validate regional official sources"
             git push
           fi
       - name: Upload regional probe artifact
@@ -42,6 +48,9 @@ jobs:
         with:
           name: regional-source-validation
           path: |
+            data/region_page_probe.csv
+            data/region_page_probe_provenance.json
             data/region_probe.csv
             data/region_probe_provenance.json
+          if-no-files-found: warn
           retention-days: 30
