@@ -9,14 +9,33 @@ from pathlib import Path
 from .probe_region_pages import SOURCES, fetch_text, pct
 
 
+def effective_metrics(source: dict) -> dict[str, list[str]]:
+    region = source["region"]
+    kind = source["kind"]
+    if region == "天津" and kind == "current_release":
+        return {
+            "industrial_growth": [r"规模以上工业增加值同比(增长|下降)([0-9.]+)[％%]"],
+            "fixed_asset_investment_growth": [r"固定资产投资（不含农户）同比(增长|下降)([0-9.]+)[％%]"],
+            "retail_sales_growth": [r"社会消费品零售总额同比(增长|下降)([0-9.]+)[％%]"],
+        }
+    if region == "上海" and kind == "retail_release":
+        return {
+            "retail_sales_growth": [
+                r"社会消费品零售总额\s*[0-9.]+\s*[+-]?[0-9.]+\s*[0-9.]+\s*([+-]?[0-9.]+)"
+            ]
+        }
+    return source["metrics"]
+
+
 def probe(source: dict, collected_at: str) -> tuple[dict, list[dict[str, str]]]:
     region = source["region"]
     url = source["url"]
+    metrics = effective_metrics(source)
     try:
         text = fetch_text(url, timeout=10)
         parsed: dict[str, float] = {}
         rows: list[dict[str, str]] = []
-        for indicator, patterns in source["metrics"].items():
+        for indicator, patterns in metrics.items():
             value = pct(text, patterns)
             if value is None:
                 continue
@@ -37,7 +56,7 @@ def probe(source: dict, collected_at: str) -> tuple[dict, list[dict[str, str]]]:
             "url": url,
             "status": "ok",
             "text_length": len(text),
-            "metrics_expected": sorted(source["metrics"]),
+            "metrics_expected": sorted(metrics),
             "metrics_parsed": parsed,
             "sample": text[:220],
         }
