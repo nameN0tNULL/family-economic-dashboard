@@ -1,0 +1,47 @@
+name: Validate regional data sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/region-probe.yml"
+      - "family_economic_dashboard/collect_regions.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe NBS province-monthly data
+        run: python -m family_economic_dashboard.collect_regions
+      - name: Show probe summary
+        run: |
+          cat data/region_probe_provenance.json
+          echo "--- latest rows ---"
+          tail -n 25 data/region_probe.csv
+      - name: Commit probe result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/region_probe.csv data/region_probe_provenance.json
+          if git diff --cached --quiet; then
+            echo "No regional probe changes"
+          else
+            git commit -m "data: validate regional NBS sources"
+            git push
+          fi
+      - name: Upload regional probe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: regional-source-validation
+          path: |
+            data/region_probe.csv
+            data/region_probe_provenance.json
+          retention-days: 30
