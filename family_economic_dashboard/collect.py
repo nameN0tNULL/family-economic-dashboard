@@ -55,7 +55,7 @@ class LinkTextParser(HTMLParser):
 
     @property
     def text(self) -> str:
-        return normalize(" ".join(self.text_parts))
+        return normalize("".join(self.text_parts))
 
 
 def normalize(s: str) -> str:
