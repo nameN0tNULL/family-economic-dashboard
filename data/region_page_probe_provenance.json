@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-14T15:27:24+00:00",
+  "collected_at": "2026-09-14T15:29:36+00:00",
   "purpose": "GitHub Hosted Runner reachability and parser validation for regional official sources",
   "accessible_region_count": 4,
   "accessible_regions": [
@@ -98,6 +98,14 @@
       "sample": "2026年7月社会消费品零售总额_社会消费品零售总额_上海市统计局 您所在的位置： 首页 统计数据 统计数据 社会消费品零售总额 字号 大 中 小 分享 2026年7月社会消费品零售总额 2026-08-19 社会消费品零售总额 2026年1-7月 指标 7月（亿元） 比去年同月增长（%） 1-7月（亿元） 比去年同期增长（%） 社会消费品零售总额 1209.78 -6.3 9529.51 -0.2 限额以上单位主要商品零售情况 其中："
     },
     {
+      "region": "安徽",
+      "cluster": "yangtze_river_delta",
+      "kind": "index_reachability",
+      "url": "https://tjj.ah.gov.cn/",
+      "status": "error",
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
       "region": "江苏",
       "cluster": "yangtze_river_delta",
       "kind": "current_release",
@@ -123,14 +131,6 @@
       "url": "https://tjj.zj.gov.cn/col/col1525492/index.html",
       "status": "error",
       "error": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>"
-    },
-    {
-      "region": "安徽",
-      "cluster": "yangtze_river_delta",
-      "kind": "index_reachability",
-      "url": "https://tjj.ah.gov.cn/",
-      "status": "error",
-      "error": "HTTPError: HTTP Error 403: Forbidden"
     }
   ]
 }
