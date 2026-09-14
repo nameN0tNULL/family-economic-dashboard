@@ -8,6 +8,7 @@ on:
       - ".github/workflows/region-probe.yml"
       - "family_economic_dashboard/collect_regions.py"
       - "family_economic_dashboard/probe_region_pages.py"
+      - "family_economic_dashboard/probe_region_pages_fast.py"
 
 permissions:
   contents: write
@@ -24,7 +25,7 @@ jobs:
         continue-on-error: true
         run: python -m family_economic_dashboard.collect_regions
       - name: Probe provincial official pages
-        run: python -m family_economic_dashboard.probe_region_pages
+        run: python -m family_economic_dashboard.probe_region_pages_fast
       - name: Show provincial probe summary
         run: |
           cat data/region_page_probe_provenance.json
