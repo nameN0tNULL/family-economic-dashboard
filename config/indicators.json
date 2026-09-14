@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "resonance": {"watch": 2, "risk": 3},
   "dimensions": [
     {"id": "employment", "name": "就业安全", "weight": 25},
@@ -9,21 +9,25 @@
     {"id": "fiscal_policy", "name": "财政/政策环境", "weight": 10}
   ],
   "indicators": [
-    {"id":"job_postings","name":"同岗招聘数量","dimension":"employment","frequency":"monthly","unit":"个","weight":2,"source":"BOSS直聘/智联/猎聘（固定搜索条件）","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-25}},
-    {"id":"salary_mid","name":"同岗薪资中位数","dimension":"employment","frequency":"monthly","unit":"K/月","weight":2,"source":"招聘网站固定搜索条件","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-5,"red":-15}},
-    {"id":"interview_leads","name":"猎头/面试机会","dimension":"employment","frequency":"monthly","unit":"次","weight":1,"source":"个人记录","risk_rule":{"basis":"six_month_pct","risk_direction":"lower_is_worse","yellow":-20,"red":-40}},
-    {"id":"cash_runway_months","name":"家庭现金可撑月数","dimension":"household","frequency":"monthly","unit":"月","weight":3,"source":"家庭汇总数据","risk_rule":{"basis":"absolute","risk_direction":"lower_is_worse","yellow":12,"red":6}},
-    {"id":"debt_service_ratio","name":"月供/税后收入","dimension":"household","frequency":"monthly","unit":"%","weight":2,"source":"家庭汇总数据","risk_rule":{"basis":"absolute","risk_direction":"higher_is_worse","yellow":30,"red":45}},
-    {"id":"existing_home_sales","name":"二手房成交量","dimension":"housing_city","frequency":"monthly","unit":"套","weight":2,"source":"当地住建局/房管局/交易中心","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-15,"red":-30}},
-    {"id":"home_days_on_market","name":"二手房成交周期","dimension":"housing_city","frequency":"monthly","unit":"天","weight":2,"source":"当地交易数据/贝壳等补充","risk_rule":{"basis":"yoy_pct","risk_direction":"higher_is_worse","yellow":15,"red":30}},
-    {"id":"market_rent","name":"市场租金","dimension":"housing_city","frequency":"quarterly","unit":"元/月","weight":1,"source":"当地官方租赁数据/平台趋势","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-5,"red":-10}},
-    {"id":"resident_population","name":"城市常住人口","dimension":"housing_city","frequency":"yearly","unit":"万人","weight":1,"source":"当地统计局年度公报","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":0,"red":-1}},
-    {"id":"local_fiscal_revenue","name":"地方一般公共预算收入","dimension":"fiscal_policy","frequency":"quarterly","unit":"亿元","weight":2,"source":"当地财政局/人大预算报告","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-5,"red":-15}},
-    {"id":"land_sale_revenue","name":"土地出让收入","dimension":"fiscal_policy","frequency":"quarterly","unit":"亿元","weight":1,"source":"当地财政局/财政部","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-15,"red":-30}},
-    {"id":"private_investment","name":"民间固定资产投资","dimension":"enterprise","frequency":"monthly","unit":"指数","weight":2,"source":"国家统计局","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-5,"red":-10}},
-    {"id":"private_profit","name":"私营/行业企业利润","dimension":"enterprise","frequency":"quarterly","unit":"指数","weight":2,"source":"国家统计局/行业数据/上市公司财报","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-20}},
-    {"id":"corp_long_term_loans","name":"企业中长期贷款","dimension":"enterprise","frequency":"monthly","unit":"亿元","weight":1,"source":"中国人民银行","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-20}},
-    {"id":"household_long_term_loans","name":"住户中长期贷款","dimension":"enterprise","frequency":"monthly","unit":"亿元","weight":1,"source":"中国人民银行","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-20}},
-    {"id":"industry_orders_profit","name":"自己行业订单/利润","dimension":"employment","frequency":"quarterly","unit":"指数","weight":2,"source":"企业内部记录/行业协会/财报","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-25}}
+    {"id":"job_postings","name":"同岗招聘数量","dimension":"employment","frequency":"monthly","unit":"个","weight":2,"collection":"manual","source":"BOSS直聘/智联/猎聘（固定搜索条件）","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-25}},
+    {"id":"salary_mid","name":"同岗薪资中位数","dimension":"employment","frequency":"monthly","unit":"K/月","weight":2,"collection":"manual","source":"招聘网站固定搜索条件","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-5,"red":-15}},
+    {"id":"interview_leads","name":"猎头/面试机会","dimension":"employment","frequency":"monthly","unit":"次","weight":1,"collection":"manual","source":"个人记录","risk_rule":{"basis":"six_month_pct","risk_direction":"lower_is_worse","yellow":-20,"red":-40}},
+    {"id":"urban_unemployment_rate","name":"全国城镇调查失业率","dimension":"employment","frequency":"monthly","unit":"%","weight":0.5,"collection":"official","source":"国家统计局月度国民经济运行","risk_rule":{"basis":"absolute","risk_direction":"higher_is_worse","yellow":5.3,"red":5.5}},
+    {"id":"industry_orders_profit","name":"自己行业订单/利润","dimension":"employment","frequency":"quarterly","unit":"指数","weight":2,"collection":"manual","source":"企业内部记录/行业协会/财报","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-25}},
+    {"id":"cash_runway_months","name":"家庭现金可撑月数","dimension":"household","frequency":"monthly","unit":"月","weight":3,"collection":"manual","source":"家庭汇总数据","risk_rule":{"basis":"absolute","risk_direction":"lower_is_worse","yellow":12,"red":6}},
+    {"id":"debt_service_ratio","name":"月供/税后收入","dimension":"household","frequency":"monthly","unit":"%","weight":2,"collection":"manual","source":"家庭汇总数据","risk_rule":{"basis":"absolute","risk_direction":"higher_is_worse","yellow":30,"red":45}},
+    {"id":"household_long_term_loans","name":"住户中长期贷款累计新增","dimension":"household","frequency":"monthly","unit":"亿元","weight":1,"collection":"official","source":"中国人民银行金融统计数据报告","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-20}},
+    {"id":"existing_home_sales","name":"二手房成交量","dimension":"housing_city","frequency":"monthly","unit":"套","weight":2,"collection":"manual","source":"当地住建局/房管局/交易中心","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-15,"red":-30}},
+    {"id":"home_days_on_market","name":"二手房成交周期","dimension":"housing_city","frequency":"monthly","unit":"天","weight":2,"collection":"manual","source":"当地交易数据/贝壳等补充","risk_rule":{"basis":"yoy_pct","risk_direction":"higher_is_worse","yellow":15,"red":30}},
+    {"id":"market_rent","name":"市场租金","dimension":"housing_city","frequency":"quarterly","unit":"元/月","weight":1,"collection":"manual","source":"当地官方租赁数据/平台趋势","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-5,"red":-10}},
+    {"id":"resident_population","name":"城市常住人口","dimension":"housing_city","frequency":"yearly","unit":"万人","weight":1,"collection":"manual","source":"当地统计局年度公报","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":0,"red":-1}},
+    {"id":"local_fiscal_revenue","name":"本地一般公共预算收入","dimension":"fiscal_policy","frequency":"quarterly","unit":"亿元","weight":2,"collection":"manual","source":"当地财政局/人大预算报告","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-5,"red":-15}},
+    {"id":"land_sale_revenue","name":"本地土地出让收入","dimension":"fiscal_policy","frequency":"quarterly","unit":"亿元","weight":1,"collection":"manual","source":"当地财政局/人大预算报告","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-15,"red":-30}},
+    {"id":"national_local_fiscal_revenue_yoy","name":"全国地方一般公共预算本级收入同比","dimension":"fiscal_policy","frequency":"monthly","unit":"%","weight":0.5,"collection":"official","source":"财政部全国财政收支情况","risk_rule":{"basis":"absolute","risk_direction":"lower_is_worse","yellow":0,"red":-5}},
+    {"id":"national_land_sale_revenue_yoy","name":"全国土地出让收入同比","dimension":"fiscal_policy","frequency":"monthly","unit":"%","weight":1,"collection":"official","source":"财政部全国财政收支情况","risk_rule":{"basis":"absolute","risk_direction":"lower_is_worse","yellow":-15,"red":-30}},
+    {"id":"private_investment","name":"民间固定资产投资同比","dimension":"enterprise","frequency":"monthly","unit":"%","weight":2,"collection":"official","source":"国家统计局月度国民经济运行","risk_rule":{"basis":"absolute","risk_direction":"lower_is_worse","yellow":-5,"red":-10}},
+    {"id":"private_profit","name":"私营工业企业利润同比","dimension":"enterprise","frequency":"monthly","unit":"%","weight":2,"collection":"official","source":"国家统计局工业企业利润","risk_rule":{"basis":"absolute","risk_direction":"lower_is_worse","yellow":-10,"red":-20}},
+    {"id":"industrial_receivables_days","name":"规上工业应收账款平均回收期","dimension":"enterprise","frequency":"monthly","unit":"天","weight":0.5,"collection":"official","source":"国家统计局工业企业利润","risk_rule":{"basis":"absolute","risk_direction":"higher_is_worse","yellow":75,"red":85}},
+    {"id":"corp_long_term_loans","name":"企事业单位中长期贷款累计新增","dimension":"enterprise","frequency":"monthly","unit":"亿元","weight":1,"collection":"official","source":"中国人民银行金融统计数据报告","risk_rule":{"basis":"yoy_pct","risk_direction":"lower_is_worse","yellow":-10,"red":-20}}
   ]
 }
