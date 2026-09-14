@@ -1,0 +1,32 @@
+name: Build dashboard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # 08:15 China Standard Time on the 15th of every month (00:15 UTC)
+    - cron: "15 0 15 * *"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test
+        run: python -m unittest discover -s tests -v
+      - name: Build report
+        run: python -m family_economic_dashboard.cli --output dist
+      - name: Upload dashboard artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: family-economic-dashboard
+          path: dist/
+          retention-days: 90
