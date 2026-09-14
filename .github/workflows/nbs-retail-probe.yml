@@ -1,0 +1,49 @@
+name: Probe NBS retail node
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/nbs-retail-probe.yml"
+      - "family_economic_dashboard/probe_nbs_retail.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe current NBS retail node
+        continue-on-error: true
+        run: python -m family_economic_dashboard.probe_nbs_retail
+      - name: Show result
+        if: always()
+        run: |
+          if [ -f data/nbs_retail_probe.json ]; then cat data/nbs_retail_probe.json; fi
+      - name: Commit result
+        if: always()
+        run: |
+          if [ ! -f data/nbs_retail_probe.json ]; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/nbs_retail_probe.json
+          if git diff --cached --quiet; then
+            echo "No retail probe changes"
+          else
+            git commit -m "data: probe NBS provincial retail node"
+            git push
+          fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nbs-retail-probe
+          path: data/nbs_retail_probe.json
+          if-no-files-found: warn
+          retention-days: 30
