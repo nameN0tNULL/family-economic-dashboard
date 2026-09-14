@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-14T15:30:56+00:00",
+  "collected_at": "2026-09-14T15:32:03+00:00",
   "purpose": "GitHub Hosted Runner reachability and parser validation for regional official sources",
   "accessible_region_count": 4,
   "accessible_regions": [
@@ -90,16 +90,16 @@
       "region": "上海",
       "cluster": "yangtze_river_delta",
       "kind": "retail_release",
-      "url": "https://tjj.sh.gov.cn/ydsj51/20260814/0e4a771b6d0b4d8f99f99d9c9cf4a65a.html",
+      "url": "https://tjj.sh.gov.cn/sjxx/20260814/6c46a30739e94cedab26dc2c0bf8b3b8.html",
       "status": "ok",
-      "text_length": 3016,
+      "text_length": 2452,
       "metrics_expected": [
         "retail_sales_growth"
       ],
       "metrics_parsed": {
-        "retail_sales_growth": -19.0
+        "retail_sales_growth": -0.2
       },
-      "sample": "2026年7月社会消费品零售总额_社会消费品零售总额_上海市统计局 您所在的位置： 首页 统计数据 统计数据 社会消费品零售总额 字号 大 中 小 分享 2026年7月社会消费品零售总额 2026-08-19 社会消费品零售总额 2026年1-7月 指标 7月（亿元） 比去年同月增长（%） 1-7月（亿元） 比去年同期增长（%） 社会消费品零售总额 1209.78 -6.3 9529.51 -0.2 限额以上单位主要商品零售情况 其中："
+      "sample": "1-7月本市社会消费品零售总额同比下降0.2%_数据信息_上海市统计局 数据发布 您所在的位置： 首页 统计数据 数据信息 字号 大 中 小 分享 1-7月本市社会消费品零售总额同比下降0.2% 2026-08-19 1-7月，本市实现社会消费品零售总额9529.51亿元，同比下降0.2%。 从限额以上单位主要商品零售情况看，粮油、食品类零售额874.57亿元，同比增长4.4%；服装、鞋帽、针纺织品类2050.64亿元，增长6.1%；化"
     },
     {
       "region": "安徽",
