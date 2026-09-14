@@ -1,3 +1,30 @@
 {
-  "sources": []
+  "collected_at": "2026-09-14T09:40:39+00:00",
+  "sources": [
+    {
+      "source": "中国人民银行-金融统计数据报告",
+      "title": "2026年8月金融统计数据报告",
+      "url": "https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html",
+      "period": "2026-08-31",
+      "indicators": [
+        "household_long_term_loans",
+        "corp_long_term_loans"
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "source": "nbs_macro",
+      "error": "ValueError: Pattern did not match: 民间投资同比(增长|下降)([0-9.]+)%"
+    },
+    {
+      "source": "nbs_profit",
+      "error": "ValueError: Pattern did not match: 私营企业实现利润总额[^。]*?同比(增长|下降)([0-9.]+)%"
+    },
+    {
+      "source": "mof",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    }
+  ],
+  "observation_count": 2
 }
