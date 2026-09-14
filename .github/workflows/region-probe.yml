@@ -10,6 +10,7 @@ on:
       - "family_economic_dashboard/probe_region_pages.py"
       - "family_economic_dashboard/probe_region_pages_fast.py"
       - "family_economic_dashboard/probe_nbs_uuid.py"
+      - "family_economic_dashboard/probe_nbs_monthly.py"
 
 permissions:
   contents: write
@@ -28,11 +29,16 @@ jobs:
       - name: Probe new NBS UUID endpoint
         continue-on-error: true
         run: python -m family_economic_dashboard.probe_nbs_uuid
+      - name: Probe NBS fsMonthData
+        run: python -m family_economic_dashboard.probe_nbs_monthly
       - name: Probe provincial official pages
         run: python -m family_economic_dashboard.probe_region_pages_fast
       - name: Show probe summary
         run: |
           if [ -f data/nbs_uuid_probe.json ]; then cat data/nbs_uuid_probe.json; fi
+          if [ -f data/nbs_monthly_probe.json ]; then cat data/nbs_monthly_probe.json; fi
+          echo "--- NBS monthly rows ---"
+          if [ -f data/nbs_monthly_probe_rows.json ]; then cat data/nbs_monthly_probe_rows.json; fi
           cat data/region_page_probe_provenance.json
           echo "--- parsed rows ---"
           cat data/region_page_probe.csv
@@ -42,6 +48,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/region_page_probe.csv data/region_page_probe_provenance.json
           if [ -f data/nbs_uuid_probe.json ]; then git add data/nbs_uuid_probe.json; fi
+          if [ -f data/nbs_monthly_probe.json ]; then git add data/nbs_monthly_probe.json; fi
+          if [ -f data/nbs_monthly_probe_rows.json ]; then git add data/nbs_monthly_probe_rows.json; fi
           if [ -f data/region_probe.csv ]; then git add data/region_probe.csv; fi
           if [ -f data/region_probe_provenance.json ]; then git add data/region_probe_provenance.json; fi
           if git diff --cached --quiet; then
@@ -56,6 +64,8 @@ jobs:
           name: regional-source-validation
           path: |
             data/nbs_uuid_probe.json
+            data/nbs_monthly_probe.json
+            data/nbs_monthly_probe_rows.json
             data/region_page_probe.csv
             data/region_page_probe_provenance.json
             data/region_probe.csv
