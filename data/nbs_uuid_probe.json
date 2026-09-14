@@ -1,33 +1,97 @@
 {
-  "collected_at": "2026-09-14T15:47:30+00:00",
-  "endpoint": "https://data.stats.gov.cn/dg/website/publicrelease/web/external/getEsDataByCidAndDt",
-  "source_project_reference": "Ayanya-0628/nbs-prov",
-  "purpose": "Smoke-test the newer NBS UUID endpoint from GitHub Hosted Runner",
+  "collected_at": "2026-09-14T15:48:45+00:00",
+  "endpoint": "https://data.stats.gov.cn/dg/website/publicrelease/web/external/stream/esData",
+  "source_project_references": [
+    "Ayanya-0628/nbs-prov",
+    "cclyfblink/nbs_fetcher",
+    "mbk-dev/nbsc"
+  ],
+  "purpose": "Smoke-test the current NBS UUID stream endpoint from GitHub Hosted Runner",
   "results": [
     {
       "province": "北京市",
-      "status": "error",
-      "error": "HTTPError: HTTP Error 404: Not Found"
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "body_sample": "{\"data\":[{\"code\":\"2024YY\",\"name\":\"2024年\",\"values\":[{\"i_showname\":\"地区生产总值 (亿元) \",\"num_accuracy_text\":\"1\",\"_name\":\"国内生产总值\",\"is_economy_chart_show_text\":\"是\",\"daterange_sdate\":694195200000,\"ek\":\"db8e5a86c08246e79b1b11251927e740\",\"dp\":\"1\",\"type\":\"indicator\",\"is_economy_chart_show_value\":\"1\",\"ds_order\":1,\"du\":\"7dae305350e74cf793520af55bceffa4\",\"catalogid\":\"6f8fbd415cbc40ffa7ecb7fd917f2598\",\"_id\":\"aff57de5ee994283974705914fbed246\",\"num_accuracy_value\":\"1\",\"du_name\":\"亿元\",\"order\":1,\"value\":\"49670.2\",\"da\"",
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "value_sample": [
+        {
+          "name": "地区生产总值 (亿元) ",
+          "unit": "亿元",
+          "value": "49670.2"
+        }
+      ],
+      "status": "ok"
     },
     {
       "province": "河北省",
-      "status": "error",
-      "error": "HTTPError: HTTP Error 404: Not Found"
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "body_sample": "{\"data\":[{\"code\":\"2024YY\",\"name\":\"2024年\",\"values\":[{\"i_showname\":\"地区生产总值 (亿元) \",\"num_accuracy_text\":\"1\",\"_name\":\"国内生产总值\",\"is_economy_chart_show_text\":\"是\",\"daterange_sdate\":694195200000,\"ek\":\"db8e5a86c08246e79b1b11251927e740\",\"dp\":\"1\",\"type\":\"indicator\",\"is_economy_chart_show_value\":\"1\",\"ds_order\":1,\"du\":\"7dae305350e74cf793520af55bceffa4\",\"catalogid\":\"6f8fbd415cbc40ffa7ecb7fd917f2598\",\"_id\":\"aff57de5ee994283974705914fbed246\",\"num_accuracy_value\":\"1\",\"du_name\":\"亿元\",\"order\":1,\"value\":\"47448.1\",\"da\"",
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "value_sample": [
+        {
+          "name": "地区生产总值 (亿元) ",
+          "unit": "亿元",
+          "value": "47448.1"
+        }
+      ],
+      "status": "ok"
     },
     {
       "province": "上海市",
-      "status": "error",
-      "error": "HTTPError: HTTP Error 404: Not Found"
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "body_sample": "{\"data\":[{\"code\":\"2024YY\",\"name\":\"2024年\",\"values\":[{\"i_showname\":\"地区生产总值 (亿元) \",\"num_accuracy_text\":\"1\",\"_name\":\"国内生产总值\",\"is_economy_chart_show_text\":\"是\",\"daterange_sdate\":694195200000,\"ek\":\"db8e5a86c08246e79b1b11251927e740\",\"dp\":\"1\",\"type\":\"indicator\",\"is_economy_chart_show_value\":\"1\",\"ds_order\":1,\"du\":\"7dae305350e74cf793520af55bceffa4\",\"catalogid\":\"6f8fbd415cbc40ffa7ecb7fd917f2598\",\"_id\":\"aff57de5ee994283974705914fbed246\",\"num_accuracy_value\":\"1\",\"du_name\":\"亿元\",\"order\":1,\"value\":\"53759.5\",\"da\"",
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "value_sample": [
+        {
+          "name": "地区生产总值 (亿元) ",
+          "unit": "亿元",
+          "value": "53759.5"
+        }
+      ],
+      "status": "ok"
     },
     {
       "province": "浙江省",
-      "status": "error",
-      "error": "HTTPError: HTTP Error 404: Not Found"
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "body_sample": "{\"data\":[{\"code\":\"2024YY\",\"name\":\"2024年\",\"values\":[{\"i_showname\":\"地区生产总值 (亿元) \",\"num_accuracy_text\":\"1\",\"_name\":\"国内生产总值\",\"is_economy_chart_show_text\":\"是\",\"daterange_sdate\":694195200000,\"ek\":\"db8e5a86c08246e79b1b11251927e740\",\"dp\":\"1\",\"type\":\"indicator\",\"is_economy_chart_show_value\":\"1\",\"ds_order\":1,\"du\":\"7dae305350e74cf793520af55bceffa4\",\"catalogid\":\"6f8fbd415cbc40ffa7ecb7fd917f2598\",\"_id\":\"aff57de5ee994283974705914fbed246\",\"num_accuracy_value\":\"1\",\"du_name\":\"亿元\",\"order\":1,\"value\":\"90007.0\",\"da\"",
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "value_sample": [
+        {
+          "name": "地区生产总值 (亿元) ",
+          "unit": "亿元",
+          "value": "90007.0"
+        }
+      ],
+      "status": "ok"
     },
     {
       "province": "安徽省",
-      "status": "error",
-      "error": "HTTPError: HTTP Error 404: Not Found"
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "body_sample": "{\"data\":[{\"code\":\"2024YY\",\"name\":\"2024年\",\"values\":[{\"i_showname\":\"地区生产总值 (亿元) \",\"num_accuracy_text\":\"1\",\"_name\":\"国内生产总值\",\"is_economy_chart_show_text\":\"是\",\"daterange_sdate\":694195200000,\"ek\":\"db8e5a86c08246e79b1b11251927e740\",\"dp\":\"1\",\"type\":\"indicator\",\"is_economy_chart_show_value\":\"1\",\"ds_order\":1,\"du\":\"7dae305350e74cf793520af55bceffa4\",\"catalogid\":\"6f8fbd415cbc40ffa7ecb7fd917f2598\",\"_id\":\"aff57de5ee994283974705914fbed246\",\"num_accuracy_value\":\"1\",\"du_name\":\"亿元\",\"order\":1,\"value\":\"50646.7\",\"da\"",
+      "state": 20000,
+      "message": "成功",
+      "data_blocks": 1,
+      "value_sample": [
+        {
+          "name": "地区生产总值 (亿元) ",
+          "unit": "亿元",
+          "value": "50646.7"
+        }
+      ],
+      "status": "ok"
     }
   ]
 }
