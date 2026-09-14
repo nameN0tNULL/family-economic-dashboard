@@ -11,6 +11,7 @@ on:
     paths:
       - ".github/workflows/collect.yml"
       - "family_economic_dashboard/collect.py"
+      - "family_economic_dashboard/collect_profit.py"
       - "config/sources.json"
 
 permissions:
@@ -28,6 +29,8 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Collect public official statistics
         run: python -m family_economic_dashboard.collect
+      - name: Collect NBS industrial profit statistics
+        run: python -m family_economic_dashboard.collect_profit
       - name: Build dashboard from collected data
         run: python -m family_economic_dashboard.cli --output dist
       - name: Commit collected observations
