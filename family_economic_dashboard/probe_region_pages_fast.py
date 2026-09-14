@@ -9,6 +9,12 @@ from pathlib import Path
 from .probe_region_pages import SOURCES, fetch_text, pct
 
 
+def effective_url(source: dict) -> str:
+    if source["region"] == "上海" and source["kind"] == "retail_release":
+        return "https://tjj.sh.gov.cn/sjxx/20260814/6c46a30739e94cedab26dc2c0bf8b3b8.html"
+    return source["url"]
+
+
 def effective_metrics(source: dict) -> dict[str, list[str]]:
     region = source["region"]
     kind = source["kind"]
@@ -20,16 +26,14 @@ def effective_metrics(source: dict) -> dict[str, list[str]]:
         }
     if region == "上海" and kind == "retail_release":
         return {
-            "retail_sales_growth": [
-                r"社会消费品零售总额\s*[0-9.]+\s*[+-]?[0-9.]+\s*[0-9.]+\s*([+-]?[0-9.]+)"
-            ]
+            "retail_sales_growth": [r"社会消费品零售总额[0-9.]+亿元，同比(增长|下降)([0-9.]+)[％%]"]
         }
     return source["metrics"]
 
 
 def probe(source: dict, collected_at: str) -> tuple[dict, list[dict[str, str]]]:
     region = source["region"]
-    url = source["url"]
+    url = effective_url(source)
     metrics = effective_metrics(source)
     try:
         text = fetch_text(url, timeout=10)
