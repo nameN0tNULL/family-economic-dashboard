@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Build dashboard"]
+    workflows: ["Build dashboard", "Collect official data"]
     types: [completed]
   push:
     branches: [main]
