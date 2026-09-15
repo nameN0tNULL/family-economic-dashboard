@@ -159,6 +159,45 @@ def collect_nbs_macro(index_url: str) -> tuple[list[Observation], dict]:
     return obs, {"source": "国家统计局-国民经济运行", "title": title, "url": url, "period": d.isoformat(), "indicators": [o.indicator for o in obs]}
 
 
+def collect_nbs_household(index_url: str) -> tuple[list[Observation], dict]:
+    url, title = discover_article(index_url, lambda t: "居民收入" in t and "消费支出" in t)
+    text = parse_page(fetch_html(url)).text
+    d = period_end(title, text)
+    income = re.search(r"全国居民人均可支配收入[^。]*?实际(增长|下降)([0-9.]+)%", text)
+    consumption = re.search(r"全国居民人均消费支出[^。]*?实际(增长|下降)([0-9.]+)%", text)
+    if not income or not consumption:
+        raise ValueError("NBS household page found but real income/consumption growth was not parsed")
+    income_real = signed(income.group(1), income.group(2))
+    consumption_real = signed(consumption.group(1), consumption.group(2))
+    gap = income_real - consumption_real
+    obs = [
+        Observation(
+            d,
+            "national_real_disposable_income_yoy",
+            income_real,
+            f"{title}；全国居民人均可支配收入扣除价格因素后的实际同比",
+            url,
+        ),
+        Observation(
+            d,
+            "national_income_consumption_gap_pp",
+            gap,
+            f"{title}；实际收入增速{income_real:g}%减实际消费支出增速{consumption_real:g}%",
+            url,
+        ),
+    ]
+    return obs, {
+        "source": "国家统计局-居民收入和消费支出",
+        "title": title,
+        "url": url,
+        "period": d.isoformat(),
+        "real_income_yoy": income_real,
+        "real_consumption_yoy": consumption_real,
+        "income_consumption_gap_pp": gap,
+        "indicators": [o.indicator for o in obs],
+    }
+
+
 def collect_nbs_profit(index_url: str) -> tuple[list[Observation], dict]:
     url, title = discover_article(index_url, lambda t: "规模以上工业企业利润" in t)
     text = parse_page(fetch_html(url)).text
@@ -242,6 +281,7 @@ def main() -> None:
     collected_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     jobs = [
         ("nbs_macro", collect_nbs_macro, cfg["nbs_index"]),
+        ("nbs_household", collect_nbs_household, cfg["nbs_index"]),
         ("nbs_profit", collect_nbs_profit, cfg["nbs_index"]),
         ("mof", collect_mof, cfg["mof_index"]),
         ("pbc", collect_pbc, cfg["pbc_index"]),
