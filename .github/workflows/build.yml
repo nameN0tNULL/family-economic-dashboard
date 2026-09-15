@@ -3,6 +3,8 @@ name: Build dashboard
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "dist/**"
   pull_request:
   workflow_dispatch:
   schedule:
@@ -10,7 +12,7 @@ on:
     - cron: "15 0 15 * *"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -24,6 +26,18 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Build report
         run: python -m family_economic_dashboard.cli --output dist
+      - name: Commit generated dashboard
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f dist/
+          if git diff --cached --quiet; then
+            echo "No dashboard output changes"
+          else
+            git commit -m "build: update generated dashboard"
+            git push
+          fi
       - name: Upload dashboard artifact
         uses: actions/upload-artifact@v4
         with:
