@@ -1,0 +1,36 @@
+{
+  "notes": [
+    "2026Q1 official CALSS regional table is published as an image; CI uses a reviewed transcription and verifies the official image URL is reachable.",
+    "A newer 2026Q2 common three-region release has not yet been located; narrower regional/industry Q2 releases are not mixed into this comparable series."
+  ],
+  "sources": [
+    {
+      "period_end": "2025-12-31",
+      "period": "2025Q4",
+      "url": "https://www.calss.net.cn/p1/kybgList/20260224/44935.html",
+      "source": "中国劳动和社会保障科学研究院",
+      "rows": 49,
+      "scopes": [
+        "京津冀",
+        "珠三角",
+        "长三角"
+      ],
+      "parse_mode": "html_table"
+    },
+    {
+      "period_end": "2026-03-31",
+      "period": "2026Q1",
+      "url": "https://www.calss.net.cn/p1/kybgList/20260515/45341.html",
+      "source": "中国劳动和社会保障科学研究院",
+      "image_url": "https://www.calss.net.cn/u/cms/www/202605/15131524or4i.jpg",
+      "rows": 49,
+      "scopes": [
+        "京津冀",
+        "珠三角",
+        "长三角"
+      ],
+      "parse_mode": "verified_official_image_snapshot"
+    }
+  ],
+  "total_rows": 98
+}
