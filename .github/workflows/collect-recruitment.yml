@@ -23,7 +23,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Recruitment-specific changes are ignored by build.yml, so this job is the
+  # single writer for recruitment data, generated dist files, and Pages deploys.
   collect-build-deploy:
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
