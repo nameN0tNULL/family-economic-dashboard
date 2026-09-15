@@ -1,0 +1,42 @@
+name: Probe NBS GBA exact scope
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/gba-nbs-probe.yml"
+      - "family_economic_dashboard/probe_gba_nbs.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe NBS city and Hong Kong/Macao databases
+        run: python -m family_economic_dashboard.probe_gba_nbs
+      - name: Show result
+        run: cat data/gba_nbs_probe.json
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gba_nbs_probe.json
+          if git diff --cached --quiet; then
+            echo "No GBA probe changes"
+          else
+            git commit -m "data: probe NBS GBA exact scope"
+            git push
+          fi
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: gba-nbs-probe
+          path: data/gba_nbs_probe.json
+          retention-days: 30
