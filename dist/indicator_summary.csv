@@ -11,10 +11,10 @@ existing_home_sales,二手房成交量,housing_city,monthly,套,,,,,,unknown,50.
 home_days_on_market,二手房成交周期,housing_city,monthly,天,,,,,,unknown,50.0,当地交易数据/贝壳等补充,,,manual
 market_rent,市场租金,housing_city,quarterly,元/月,,,,,,unknown,50.0,当地官方租赁数据/平台趋势,,,manual
 resident_population,城市常住人口,housing_city,yearly,万人,,,,,,unknown,50.0,当地统计局年度公报,,,manual
-national_real_estate_investment_yoy,全国房地产开发投资同比,housing_city,monthly,%,,,,,,unknown,50.0,国家统计局全国房地产市场基本情况,,,official
-national_new_home_sales_area_yoy,全国新建商品房销售面积同比,housing_city,monthly,%,,,,,,unknown,50.0,国家统计局全国房地产市场基本情况,,,official
-national_second_hand_net_sign_area_yoy,全国二手房网签面积同比,housing_city,monthly,%,,,,,,unknown,50.0,国家统计局/住房城乡建设部,,,official
-national_developer_funding_yoy,房地产开发企业到位资金同比,housing_city,monthly,%,,,,,,unknown,50.0,国家统计局全国房地产市场基本情况,,,official
+national_real_estate_investment_yoy,全国房地产开发投资同比,housing_city,monthly,%,-19.9,2026-08-31,,,,yellow,65.0,国家统计局全国房地产市场基本情况,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026年1—8月份全国房地产市场基本情况；全国房地产开发投资累计同比,official
+national_new_home_sales_area_yoy,全国新建商品房销售面积同比,housing_city,monthly,%,-12.1,2026-08-31,,,,yellow,65.0,国家统计局全国房地产市场基本情况,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026年1—8月份全国房地产市场基本情况；新建商品房销售面积累计同比,official
+national_second_hand_net_sign_area_yoy,全国二手房网签面积同比,housing_city,monthly,%,10.6,2026-08-31,,,,green,100.0,国家统计局/住房城乡建设部,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026年1—8月份全国房地产市场基本情况；住建部口径二手房交易网签面积累计同比,official
+national_developer_funding_yoy,房地产开发企业到位资金同比,housing_city,monthly,%,-21.0,2026-08-31,,,,red,30.0,国家统计局全国房地产市场基本情况,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026年1—8月份全国房地产市场基本情况；房地产开发企业到位资金累计同比,official
 local_fiscal_revenue,本地一般公共预算收入,fiscal_policy,quarterly,亿元,,,,,,unknown,50.0,当地财政局/人大预算报告,,,manual
 land_sale_revenue,本地土地出让收入,fiscal_policy,quarterly,亿元,,,,,,unknown,50.0,当地财政局/人大预算报告,,,manual
 national_local_fiscal_revenue_yoy,全国地方一般公共预算本级收入同比,fiscal_policy,monthly,%,3.3,2026-07-31,0.0,,,green,100.0,财政部全国财政收支情况,https://gks.mof.gov.cn/tongjishuju/202608/t20260814_3995497.htm,2026年1-7月财政收支情况；全国地方一般公共预算本级收入同比,official

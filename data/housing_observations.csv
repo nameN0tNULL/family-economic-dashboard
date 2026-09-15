@@ -1,0 +1,5 @@
+date,indicator,value,note,source_url,collected_at
+2026-08-31,national_developer_funding_yoy,-21,2026年1—8月份全国房地产市场基本情况；房地产开发企业到位资金累计同比,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026-09-15T09:43:17+00:00
+2026-08-31,national_new_home_sales_area_yoy,-12.1,2026年1—8月份全国房地产市场基本情况；新建商品房销售面积累计同比,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026-09-15T09:43:17+00:00
+2026-08-31,national_real_estate_investment_yoy,-19.9,2026年1—8月份全国房地产市场基本情况；全国房地产开发投资累计同比,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026-09-15T09:43:17+00:00
+2026-08-31,national_second_hand_net_sign_area_yoy,10.6,2026年1—8月份全国房地产市场基本情况；住建部口径二手房交易网签面积累计同比,https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html,2026-09-15T09:43:17+00:00

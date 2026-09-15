@@ -1,0 +1,34 @@
+{
+  "collected_at": "2026-09-15T09:43:17+00:00",
+  "sources": [
+    {
+      "source": "国家统计局-70个大中城市商品住宅销售价格",
+      "title": "2026年8月份70个大中城市商品住宅销售价格变动情况",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965304.html",
+      "period": "2026-08-31",
+      "city_count": 70,
+      "row_count": 140,
+      "markets": {
+        "new": 70,
+        "second_hand": 70
+      }
+    },
+    {
+      "source": "国家统计局-全国房地产市场基本情况",
+      "title": "2026年1—8月份全国房地产市场基本情况",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html",
+      "period": "2026-08-31",
+      "indicators": {
+        "national_real_estate_investment_yoy": -19.9,
+        "national_new_home_sales_area_yoy": -12.1,
+        "national_second_hand_net_sign_area_yoy": 10.6,
+        "national_developer_funding_yoy": -21.0
+      }
+    }
+  ],
+  "notes": [
+    "City price changes are converted from official index levels: 99.8 -> -0.2% and 103.0 -> +3.0%.",
+    "Economic-group views are explicitly 70-city samples, not complete metropolitan-area coverage.",
+    "Second-hand transaction area is Ministry of Housing and Urban-Rural Development data quoted by NBS."
+  ]
+}
