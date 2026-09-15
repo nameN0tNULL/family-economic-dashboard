@@ -26,7 +26,7 @@ jobs:
         run: python -m family_economic_dashboard.collect_recruitment
       - name: Commit recruitment data
         run: |
-          if git diff --quiet -- data/recruitment_market.csv data/recruitment_provenance.json; then
+          if [ -z "$(git status --porcelain -- data/recruitment_market.csv data/recruitment_provenance.json)" ]; then
             echo "No recruitment data changes"
             exit 0
           fi
