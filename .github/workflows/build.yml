@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths-ignore:
       - "dist/**"
+      - "data/recruitment_market.csv"
+      - "data/recruitment_provenance.json"
+      - "data/recruitment_searches.csv"
+      - "family_economic_dashboard/recruitment.py"
+      - "family_economic_dashboard/collect_recruitment.py"
+      - ".github/workflows/collect-recruitment.yml"
   pull_request:
   workflow_dispatch:
   schedule:
