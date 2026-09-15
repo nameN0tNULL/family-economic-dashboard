@@ -1,11 +1,11 @@
 {
-  "collected_at": "2026-09-14T09:46:32+00:00",
+  "collected_at": "2026-09-15T11:02:45+00:00",
   "sources": [
     {
       "source": "国家统计局-国民经济运行",
-      "title": "1—7月份国民经济保持总体平稳、向新向优发展态势",
-      "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260817_1965056.html",
-      "period": "2026-07-31",
+      "title": "8月份国民经济运行平稳、发展向新向优",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html",
+      "period": "2026-08-31",
       "indicators": [
         "private_investment",
         "urban_unemployment_rate"
@@ -33,6 +33,10 @@
     }
   ],
   "errors": [
+    {
+      "source": "nbs_household",
+      "error": "RuntimeError: No matching article found at https://www.stats.gov.cn/sj/zxfb/"
+    },
     {
       "source": "mof",
       "error": "HTTPError: HTTP Error 502: Bad Gateway"
