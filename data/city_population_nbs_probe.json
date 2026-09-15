@@ -1,0 +1,93 @@
+{
+  "collected_at": "2026-09-15T09:46:53+00:00",
+  "purpose": "Find a stable NBS mainYearData population indicator and city-code mapping for the city vitality layer.",
+  "root_id": "2d06bab01494417e9052ef0f8d93e23e",
+  "root_name": "主要城市年度数据",
+  "visited_nodes": 10,
+  "candidate_count": 1,
+  "candidates": [
+    {
+      "cid": "b13e73d4a4734a46bf358aa1baff2649",
+      "node": "人口和就业",
+      "path": [
+        "主要城市年度数据",
+        "人口和就业"
+      ],
+      "indicators": [
+        {
+          "id": "3825c2d7a32b4cf6b3d72fc5ed9e62c6",
+          "label": "年末户籍人口 (万人)",
+          "unit": "万人"
+        }
+      ],
+      "dates": {
+        "dt_all": "2025YY",
+        "dt_name": "2025年"
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "cid": "b13e73d4a4734a46bf358aa1baff2649",
+      "node": "人口和就业",
+      "indicator": {
+        "id": "3825c2d7a32b4cf6b3d72fc5ed9e62c6",
+        "label": "年末户籍人口 (万人)",
+        "unit": "万人"
+      },
+      "year": "2025",
+      "error": "HTTPError: HTTP Error 500: Internal Server Error"
+    }
+  ],
+  "target_cities": {
+    "北京": [
+      "110000",
+      "110100"
+    ],
+    "天津": [
+      "120000",
+      "120100"
+    ],
+    "上海": [
+      "310000",
+      "310100"
+    ],
+    "南京": [
+      "320100"
+    ],
+    "杭州": [
+      "330100"
+    ],
+    "宁波": [
+      "330200"
+    ],
+    "合肥": [
+      "340100"
+    ],
+    "广州": [
+      "440100"
+    ],
+    "深圳": [
+      "440300"
+    ],
+    "惠州": [
+      "441300"
+    ],
+    "武汉": [
+      "420100"
+    ],
+    "长沙": [
+      "430100"
+    ],
+    "南昌": [
+      "360100"
+    ],
+    "重庆": [
+      "500000",
+      "500100"
+    ],
+    "成都": [
+      "510100"
+    ]
+  }
+}
