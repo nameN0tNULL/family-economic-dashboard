@@ -10,8 +10,8 @@ household_savings_rate,家庭储蓄率,household,monthly,%,,,,,,unknown,50.0,本
 fixed_obligation_ratio,固定必要支出率,household,monthly,%,,,,,,unknown,50.0,本地私密家庭汇总,,,private
 primary_income_loss_runway_months,主收入中断现金跑道,household,monthly,月,,,,,,unknown,50.0,本地私密家庭汇总（保留稳定收入后的压力情景）,,,private
 household_long_term_loans,住户中长期贷款累计新增,household,monthly,亿元,188.0,2026-08-31,,,,unknown,50.0,中国人民银行金融统计数据报告,https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html,2026年8月金融统计数据报告；年内累计新增，统一换算为亿元,official
-national_real_disposable_income_yoy,全国居民人均可支配收入实际同比,household,quarterly,%,,,,,,unknown,50.0,国家统计局居民收入和消费支出,,,official
-national_income_consumption_gap_pp,居民实际收入-消费增速差,household,quarterly,pp,,,,,,unknown,50.0,国家统计局居民收入和消费支出,,,official
+national_real_disposable_income_yoy,全国居民人均可支配收入实际同比,household,quarterly,%,4.2,2026-06-30,0.0,,,green,100.0,国家统计局居民收入和消费支出,https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202607/t20260715_1964129.html,2026年上半年居民收入和消费支出情况；全国居民人均可支配收入扣除价格因素后的实际同比,official
+national_income_consumption_gap_pp,居民实际收入-消费增速差,household,quarterly,pp,1.5,2026-06-30,0.0,,,green,100.0,国家统计局居民收入和消费支出,https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202607/t20260715_1964129.html,2026年上半年居民收入和消费支出情况；实际收入增速4.2%减实际消费支出增速2.7%,official
 existing_home_sales,二手房成交量,housing_city,monthly,套,,,,,,unknown,50.0,当地住建局/房管局/交易中心,,,manual
 home_days_on_market,二手房成交周期,housing_city,monthly,天,,,,,,unknown,50.0,当地交易数据/贝壳等补充,,,manual
 market_rent,市场租金,housing_city,quarterly,元/月,,,,,,unknown,50.0,当地官方租赁数据/平台趋势,,,manual

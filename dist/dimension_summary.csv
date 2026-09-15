@@ -1,6 +1,6 @@
 dimension,name,weight,score,status,coverage,known_count,total_count,red_count,yellow_count
 employment,就业安全,25.0,65.0,yellow,6.7,1,5,0,1
-household,家庭财务安全,25.0,,unknown,0.0,0,8,0,0
+household,家庭财务安全,25.0,100.0,green,4.3,2,8,0,0
 housing_city,房地产/城市,20.0,65.0,yellow,14.3,4,8,1,2
 enterprise,企业经济,20.0,68.9,yellow,81.8,3,4,1,0
 fiscal_policy,财政/政策环境,10.0,53.3,red,33.3,2,4,1,0

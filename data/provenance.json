@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-15T11:06:26+00:00",
+  "collected_at": "2026-09-15T11:07:28+00:00",
   "sources": [
     {
       "source": "国家统计局-国民经济运行",
@@ -9,6 +9,19 @@
       "indicators": [
         "private_investment",
         "urban_unemployment_rate"
+      ]
+    },
+    {
+      "source": "国家统计局-居民收入和消费支出",
+      "title": "2026年上半年居民收入和消费支出情况",
+      "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202607/t20260715_1964129.html",
+      "period": "2026-06-30",
+      "real_income_yoy": 4.2,
+      "real_consumption_yoy": 2.7,
+      "income_consumption_gap_pp": 1.5,
+      "indicators": [
+        "national_real_disposable_income_yoy",
+        "national_income_consumption_gap_pp"
       ]
     },
     {
@@ -34,13 +47,9 @@
   ],
   "errors": [
     {
-      "source": "nbs_household",
-      "error": "RuntimeError: No matching article found at https://www.stats.gov.cn/sj/zxfb/"
-    },
-    {
       "source": "mof",
       "error": "HTTPError: HTTP Error 502: Bad Gateway"
     }
   ],
-  "observation_count": 6
+  "observation_count": 8
 }
