@@ -27,6 +27,18 @@ CLUSTERS = {
         "expected_regions": 1,
         "note": "当前月度工业/投资使用广东全省做代理，不等同于大湾区9市+香港+澳门精确口径。",
     },
+    "chengdu_chongqing_proxy": {
+        "name": "成渝地区（川渝代理）",
+        "scope": "proxy",
+        "expected_regions": 2,
+        "note": "当前使用四川全省+重庆市做代理，范围大于成渝地区双城经济圈官方精确口径。",
+    },
+    "middle_yangtze_proxy": {
+        "name": "长江中游（鄂湘赣代理）",
+        "scope": "proxy",
+        "expected_regions": 3,
+        "note": "当前使用湖北、湖南、江西三省做代理，范围大于长江中游城市群官方精确口径。",
+    },
 }
 
 INDICATORS = {
