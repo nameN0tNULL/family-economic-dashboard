@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-15T00:59:48+00:00",
+  "collected_at": "2026-09-15T01:03:40+00:00",
   "source": "国家统计局-分省月度数据",
   "endpoint": "https://data.stats.gov.cn/dg/website/publicrelease/web/external/stream/esData",
   "root_id": "f4c6cd795fea436c807163397dd36b98",
@@ -43,12 +43,39 @@
       "name": "广东省",
       "code": "440000000000",
       "cluster": "greater_bay_area_proxy"
+    },
+    {
+      "name": "重庆市",
+      "code": "500000000000",
+      "cluster": "chengdu_chongqing_proxy"
+    },
+    {
+      "name": "四川省",
+      "code": "510000000000",
+      "cluster": "chengdu_chongqing_proxy"
+    },
+    {
+      "name": "湖北省",
+      "code": "420000000000",
+      "cluster": "middle_yangtze_proxy"
+    },
+    {
+      "name": "湖南省",
+      "code": "430000000000",
+      "cluster": "middle_yangtze_proxy"
+    },
+    {
+      "name": "江西省",
+      "code": "360000000000",
+      "cluster": "middle_yangtze_proxy"
     }
   ],
   "cluster_scope": {
-    "jing_jin_ji": "北京+天津+河北",
-    "yangtze_river_delta": "上海+江苏+浙江+安徽",
-    "greater_bay_area_proxy": "广东全省代理；不是大湾区9市+香港+澳门精确口径"
+    "jing_jin_ji": "北京+天津+河北，省级成员口径",
+    "yangtze_river_delta": "上海+江苏+浙江+安徽，省级成员口径",
+    "greater_bay_area_proxy": "广东全省代理；不是大湾区9市+香港+澳门精确口径",
+    "chengdu_chongqing_proxy": "四川全省+重庆代理；范围大于双城经济圈精确口径",
+    "middle_yangtze_proxy": "湖北+湖南+江西三省代理；范围大于长江中游城市群精确口径"
   },
   "series": {
     "industrial_growth": {
@@ -61,14 +88,19 @@
       "regions_on_latest_nonblank_date": [
         "上海市",
         "北京市",
+        "四川省",
         "天津市",
         "安徽省",
         "广东省",
         "江苏省",
+        "江西省",
         "河北省",
-        "浙江省"
+        "浙江省",
+        "湖北省",
+        "湖南省",
+        "重庆市"
       ],
-      "rows_collected": 16
+      "rows_collected": 26
     },
     "fixed_asset_investment_growth": {
       "cid": "e43af1a71b2d4a768569866795ed66e2",
@@ -80,19 +112,24 @@
       "regions_on_latest_nonblank_date": [
         "上海市",
         "北京市",
+        "四川省",
         "天津市",
         "安徽省",
         "广东省",
         "江苏省",
+        "江西省",
         "河北省",
-        "浙江省"
+        "浙江省",
+        "湖北省",
+        "湖南省",
+        "重庆市"
       ],
-      "rows_collected": 16
+      "rows_collected": 26
     }
   },
   "notes": [
     "Current provincial retail-sales series is not available in NBS fsMonthData; retail remains a separate local-source fallback.",
     "The only retail child found under 国内贸易 is marked (-201012) and ends at 2010-12.",
-    "Greater Bay Area monthly industrial/investment observations currently use Guangdong Province as an explicit proxy."
+    "Proxy clusters are explicitly labelled and must not be interpreted as exact official city-cluster aggregates."
   ]
 }
