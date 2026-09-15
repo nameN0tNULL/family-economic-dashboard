@@ -30,7 +30,7 @@ def _regional_markdown(regional: dict | None) -> list[str]:
         "",
         "## 区域经济群",
         "",
-        "> 区域层用于判断宏观分化，不直接计入家庭综合评分。大湾区当前使用广东全省作为月度代理，明确不等同于9市+香港+澳门精确口径。",
+        "> 区域层用于判断宏观分化，不直接计入家庭综合评分。标为“代理”的经济群使用更宽的省级范围，只作为月度方向信号，不等同于官方城市群精确口径。",
         "",
         "| 经济群 | 口径 | 指标 | 数据期 | 中位/代理增速 | 正/负 | 改善/恶化 | 状态 | 覆盖 |",
         "|---|---|---|---|---:|---:|---:|:---:|---:|",
@@ -90,7 +90,7 @@ def _regional_html(regional: dict | None) -> str:
         return ""
     cards = []
     for r in regional["summaries"]:
-        scope = "精确成员" if r["scope"] == "exact" else "广东代理"
+        scope = "精确成员" if r["scope"] == "exact" else "代理口径"
         cards.append(
             "<div class='card regional-card'>"
             f"<div class='muted'>{html.escape(r['cluster_name'])} · {scope}</div>"
@@ -114,7 +114,7 @@ def _regional_html(regional: dict | None) -> str:
         )
     return (
         "<section><h2>区域经济群</h2>"
-        "<p class='muted'>区域层用于判断宏观分化，不直接计入家庭综合评分。粤港澳大湾区当前以广东全省作为月度代理，不能解释为9市+香港+澳门精确总量。</p>"
+        "<p class='muted'>区域层用于判断宏观分化，不直接计入家庭综合评分。代理口径使用更宽的省级范围，只表示月度方向，不等同于官方城市群精确总量。</p>"
         f"<div class='grid'>{''.join(cards)}</div>"
         "<h3>成员最新变化</h3>"
         "<table><thead><tr><th>经济群</th><th>地区</th><th>指标</th><th>本期</th><th>上期</th><th>变化</th></tr></thead>"
