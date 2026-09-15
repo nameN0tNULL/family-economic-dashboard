@@ -9,7 +9,8 @@ from family_economic_dashboard.housing import summarize_housing
 
 class HousingTests(unittest.TestCase):
     def test_parse_70_city_price_tables(self) -> None:
-        cities = [f"城{i}" for i in range(70)]
+        cities = [f"城{chr(0x4e00 + i)}" for i in range(70)]
+
         def table(mom: float, yoy: float, avg: float) -> str:
             rows = []
             for i in range(35):
@@ -19,6 +20,7 @@ class HousingTests(unittest.TestCase):
                     f"<td>{b}</td><td>{100+mom}</td><td>{100+yoy}</td><td>{100+avg}</td></tr>"
                 )
             return "<table>" + "".join(rows) + "</table>"
+
         html = table(-0.2, -2.3, -2.0) + table(-0.1, -3.5, -4.0)
         parsed = parse_70_city_prices(html)
         self.assertEqual(len(parsed["new"]), 70)
