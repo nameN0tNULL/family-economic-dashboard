@@ -31,6 +31,10 @@ REGIONS = [
     {"name": "江苏省", "code": "320000000000", "cluster": "yangtze_river_delta"},
     {"name": "浙江省", "code": "330000000000", "cluster": "yangtze_river_delta"},
     {"name": "安徽省", "code": "340000000000", "cluster": "yangtze_river_delta"},
+    # Guangdong is deliberately a proxy for the Greater Bay Area at the monthly
+    # industrial/investment layer. It is broader than the official GBA 9-city
+    # mainland scope and excludes Hong Kong/Macao, so the cluster key says proxy.
+    {"name": "广东省", "code": "440000000000", "cluster": "greater_bay_area_proxy"},
 ]
 
 # UUIDs were discovered from the current NBS fsMonthData metadata tree. The collector
@@ -150,6 +154,7 @@ def parse_rows(indicator: str, spec: dict, payload: dict, collected_at: str) -> 
             value = str(item.get("value", "")).strip()
             if code not in cluster_by_code or not value:
                 continue
+            proxy_note = "；广东省仅作为粤港澳大湾区月度代理" if cluster_by_code[code] == "greater_bay_area_proxy" else ""
             rows.append(
                 {
                     "date": month_end(period),
@@ -162,7 +167,7 @@ def parse_rows(indicator: str, spec: dict, payload: dict, collected_at: str) -> 
                     "source": "国家统计局-分省月度数据",
                     "source_url": SOURCE_URL,
                     "collected_at": collected_at,
-                    "note": "官方分省月度累计同比/累计增长口径；NBS stream/esData",
+                    "note": "官方分省月度累计同比/累计增长口径；NBS stream/esData" + proxy_note,
                 }
             )
     return rows
@@ -199,10 +204,16 @@ def main() -> None:
         "endpoint": f"{BASE}{STREAM}",
         "root_id": ROOT_ID,
         "regions": REGIONS,
+        "cluster_scope": {
+            "jing_jin_ji": "北京+天津+河北",
+            "yangtze_river_delta": "上海+江苏+浙江+安徽",
+            "greater_bay_area_proxy": "广东全省代理；不是大湾区9市+香港+澳门精确口径",
+        },
         "series": {},
         "notes": [
             "Current provincial retail-sales series is not available in NBS fsMonthData; retail remains a separate local-source fallback.",
             "The only retail child found under 国内贸易 is marked (-201012) and ends at 2010-12.",
+            "Greater Bay Area monthly industrial/investment observations currently use Guangdong Province as an explicit proxy.",
         ],
     }
 
