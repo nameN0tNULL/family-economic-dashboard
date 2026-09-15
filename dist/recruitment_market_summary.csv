@@ -1,1 +1,4 @@
 scope,latest_period,previous_period,hot_job_count,median_salary_k,median_qoq_pct,up_count,down_count,flat_count,comparable_count,entrants,exits,status,source_url
+京津冀,2026-03-31,2025-12-31,18,12.5,-3.687782805429868,6,12,0,18,[],[],yellow,https://www.calss.net.cn/p1/kybgList/20260515/45341.html
+珠三角,2026-03-31,2025-12-31,14,11.55,0.8804418453541185,8,5,1,14,[],[],green,https://www.calss.net.cn/p1/kybgList/20260515/45341.html
+长三角,2026-03-31,2025-12-31,17,11.100000000000001,1.775147928994092,10,6,1,17,[],[],green,https://www.calss.net.cn/p1/kybgList/20260515/45341.html
