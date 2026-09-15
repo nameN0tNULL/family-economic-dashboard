@@ -31,15 +31,16 @@ REGIONS = [
     {"name": "江苏省", "code": "320000000000", "cluster": "yangtze_river_delta"},
     {"name": "浙江省", "code": "330000000000", "cluster": "yangtze_river_delta"},
     {"name": "安徽省", "code": "340000000000", "cluster": "yangtze_river_delta"},
-    # Guangdong is deliberately a proxy for the Greater Bay Area at the monthly
-    # industrial/investment layer. It is broader than the official GBA 9-city
-    # mainland scope and excludes Hong Kong/Macao, so the cluster key says proxy.
+    # Proxy scopes are intentionally explicit: these province-level NBS series are
+    # useful monthly signals but are broader than the official city-cluster borders.
     {"name": "广东省", "code": "440000000000", "cluster": "greater_bay_area_proxy"},
+    {"name": "重庆市", "code": "500000000000", "cluster": "chengdu_chongqing_proxy"},
+    {"name": "四川省", "code": "510000000000", "cluster": "chengdu_chongqing_proxy"},
+    {"name": "湖北省", "code": "420000000000", "cluster": "middle_yangtze_proxy"},
+    {"name": "湖南省", "code": "430000000000", "cluster": "middle_yangtze_proxy"},
+    {"name": "江西省", "code": "360000000000", "cluster": "middle_yangtze_proxy"},
 ]
 
-# UUIDs were discovered from the current NBS fsMonthData metadata tree. The collector
-# validates the labels before use so a metadata change fails loudly instead of silently
-# attaching the wrong series to an indicator name.
 SERIES = {
     "industrial_growth": {
         "cid": "9593fb551802499683f758e0f6f45bc7",
@@ -56,18 +57,15 @@ SERIES = {
 }
 
 FIELDS = [
-    "date",
-    "cluster",
-    "region",
-    "region_code",
-    "indicator",
-    "value",
-    "unit",
-    "source",
-    "source_url",
-    "collected_at",
-    "note",
+    "date", "cluster", "region", "region_code", "indicator", "value", "unit",
+    "source", "source_url", "collected_at", "note",
 ]
+
+PROXY_NOTES = {
+    "greater_bay_area_proxy": "；广东省仅作为粤港澳大湾区月度代理",
+    "chengdu_chongqing_proxy": "；四川全省+重庆市仅作为成渝地区月度代理",
+    "middle_yangtze_proxy": "；鄂湘赣三省仅作为长江中游城市群月度代理",
+}
 
 
 def get_json(path: str, params: dict[str, str]) -> dict:
@@ -88,10 +86,7 @@ def post_json(body: dict) -> dict:
 
 
 def validate_series(spec: dict) -> dict:
-    payload = get_json(
-        f"{META}/queryIndicatorsByCid",
-        {"cid": spec["cid"], "dt": "", "name": ""},
-    )
+    payload = get_json(f"{META}/queryIndicatorsByCid", {"cid": spec["cid"], "dt": "", "name": ""})
     items = payload.get("data", {}).get("list", [])
     item = next((x for x in items if str(x.get("_id", "")) == spec["indicator_id"]), None)
     if item is None:
@@ -113,8 +108,7 @@ def latest_period(cid: str) -> str:
 
 
 def shift_month(yyyymm: str, delta: int) -> str:
-    year = int(yyyymm[:4])
-    month = int(yyyymm[4:6])
+    year = int(yyyymm[:4]); month = int(yyyymm[4:6])
     index = year * 12 + month - 1 + delta
     return f"{index // 12:04d}{index % 12 + 1:02d}"
 
@@ -154,22 +148,20 @@ def parse_rows(indicator: str, spec: dict, payload: dict, collected_at: str) -> 
             value = str(item.get("value", "")).strip()
             if code not in cluster_by_code or not value:
                 continue
-            proxy_note = "；广东省仅作为粤港澳大湾区月度代理" if cluster_by_code[code] == "greater_bay_area_proxy" else ""
-            rows.append(
-                {
-                    "date": month_end(period),
-                    "cluster": cluster_by_code[code],
-                    "region": str(item.get("area") or region_by_code[code]),
-                    "region_code": code,
-                    "indicator": indicator,
-                    "value": value,
-                    "unit": str(item.get("du_name") or spec["unit"]),
-                    "source": "国家统计局-分省月度数据",
-                    "source_url": SOURCE_URL,
-                    "collected_at": collected_at,
-                    "note": "官方分省月度累计同比/累计增长口径；NBS stream/esData" + proxy_note,
-                }
-            )
+            cluster = cluster_by_code[code]
+            rows.append({
+                "date": month_end(period),
+                "cluster": cluster,
+                "region": str(item.get("area") or region_by_code[code]),
+                "region_code": code,
+                "indicator": indicator,
+                "value": value,
+                "unit": str(item.get("du_name") or spec["unit"]),
+                "source": "国家统计局-分省月度数据",
+                "source_url": SOURCE_URL,
+                "collected_at": collected_at,
+                "note": "官方分省月度累计同比/累计增长口径；NBS stream/esData" + PROXY_NOTES.get(cluster, ""),
+            })
     return rows
 
 
@@ -189,10 +181,8 @@ def write_upsert(path: Path, new_rows: list[dict[str, str]]) -> None:
         merged[(row["date"], row["region_code"], row["indicator"])] = row
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=FIELDS)
-        writer.writeheader()
-        for key in sorted(merged):
-            writer.writerow(merged[key])
+        writer = csv.DictWriter(f, fieldnames=FIELDS); writer.writeheader()
+        for key in sorted(merged): writer.writerow(merged[key])
 
 
 def main() -> None:
@@ -205,48 +195,37 @@ def main() -> None:
         "root_id": ROOT_ID,
         "regions": REGIONS,
         "cluster_scope": {
-            "jing_jin_ji": "北京+天津+河北",
-            "yangtze_river_delta": "上海+江苏+浙江+安徽",
+            "jing_jin_ji": "北京+天津+河北，省级成员口径",
+            "yangtze_river_delta": "上海+江苏+浙江+安徽，省级成员口径",
             "greater_bay_area_proxy": "广东全省代理；不是大湾区9市+香港+澳门精确口径",
+            "chengdu_chongqing_proxy": "四川全省+重庆代理；范围大于双城经济圈精确口径",
+            "middle_yangtze_proxy": "湖北+湖南+江西三省代理；范围大于长江中游城市群精确口径",
         },
         "series": {},
         "notes": [
             "Current provincial retail-sales series is not available in NBS fsMonthData; retail remains a separate local-source fallback.",
             "The only retail child found under 国内贸易 is marked (-201012) and ends at 2010-12.",
-            "Greater Bay Area monthly industrial/investment observations currently use Guangdong Province as an explicit proxy.",
+            "Proxy clusters are explicitly labelled and must not be interpreted as exact official city-cluster aggregates.",
         ],
     }
 
     for indicator, spec in SERIES.items():
-        meta = validate_series(spec)
-        latest = latest_period(spec["cid"])
-        payload = fetch_recent(spec, latest)
-        rows = parse_rows(indicator, spec, payload, collected_at)
+        meta = validate_series(spec); latest = latest_period(spec["cid"])
+        payload = fetch_recent(spec, latest); rows = parse_rows(indicator, spec, payload, collected_at)
         latest_nonblank = max((r["date"] for r in rows), default=None)
         regions_latest = sorted({r["region"] for r in rows if r["date"] == latest_nonblank}) if latest_nonblank else []
         provenance["series"][indicator] = {
-            "cid": spec["cid"],
-            "indicator_id": spec["indicator_id"],
-            "label": meta["label"],
-            "unit": meta["unit"],
-            "latest_catalog_period": latest,
-            "latest_nonblank_date": latest_nonblank,
-            "regions_on_latest_nonblank_date": regions_latest,
-            "rows_collected": len(rows),
+            "cid": spec["cid"], "indicator_id": spec["indicator_id"], "label": meta["label"], "unit": meta["unit"],
+            "latest_catalog_period": latest, "latest_nonblank_date": latest_nonblank,
+            "regions_on_latest_nonblank_date": regions_latest, "rows_collected": len(rows),
         }
         all_rows.extend(rows)
-        print(
-            f"[ok] {indicator}: latest_catalog={latest}, latest_nonblank={latest_nonblank}, "
-            f"regions={len(regions_latest)}, rows={len(rows)}"
-        )
+        print(f"[ok] {indicator}: latest_catalog={latest}, latest_nonblank={latest_nonblank}, regions={len(regions_latest)}, rows={len(rows)}")
 
     if not all_rows:
         raise SystemExit("No regional NBS observations collected")
-
     write_upsert(Path("data/regional_observations.csv"), all_rows)
-    Path("data/regional_provenance.json").write_text(
-        json.dumps(provenance, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    Path("data/regional_provenance.json").write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Collected/upserted {len(all_rows)} regional observations")
 
 
