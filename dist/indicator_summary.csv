@@ -4,9 +4,14 @@ salary_mid,同岗薪资中位数,employment,monthly,K/月,,,,,,unknown,50.0,招�
 interview_leads,猎头/面试机会,employment,monthly,次,,,,,,unknown,50.0,个人记录,,,manual
 urban_unemployment_rate,全国城镇调查失业率,employment,monthly,%,5.2,2026-07-31,0.0,,,green,100.0,国家统计局月度国民经济运行,https://www.stats.gov.cn/sj/zxfb/202608/t20260817_1965056.html,1—7月份国民经济保持总体平稳、向新向优发展态势；月度城镇调查失业率,official
 industry_orders_profit,自己行业订单/利润,employment,quarterly,指数,,,,,,unknown,50.0,企业内部记录/行业协会/财报,,,manual
-cash_runway_months,家庭现金可撑月数,household,monthly,月,,,,,,unknown,50.0,家庭汇总数据,,,manual
-debt_service_ratio,月供/税后收入,household,monthly,%,,,,,,unknown,50.0,家庭汇总数据,,,manual
+cash_runway_months,零收入现金跑道,household,monthly,月,,,,,,unknown,50.0,本地私密家庭汇总（流动资产/必要支出与债务支出）,,,private
+debt_service_ratio,偿债率（月债务支出/税后收入）,household,monthly,%,,,,,,unknown,50.0,本地私密家庭汇总,,,private
+household_savings_rate,家庭储蓄率,household,monthly,%,,,,,,unknown,50.0,本地私密家庭汇总,,,private
+fixed_obligation_ratio,固定必要支出率,household,monthly,%,,,,,,unknown,50.0,本地私密家庭汇总,,,private
+primary_income_loss_runway_months,主收入中断现金跑道,household,monthly,月,,,,,,unknown,50.0,本地私密家庭汇总（保留稳定收入后的压力情景）,,,private
 household_long_term_loans,住户中长期贷款累计新增,household,monthly,亿元,188.0,2026-08-31,,,,unknown,50.0,中国人民银行金融统计数据报告,https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html,2026年8月金融统计数据报告；年内累计新增，统一换算为亿元,official
+national_real_disposable_income_yoy,全国居民人均可支配收入实际同比,household,quarterly,%,,,,,,unknown,50.0,国家统计局居民收入和消费支出,,,official
+national_income_consumption_gap_pp,居民实际收入-消费增速差,household,quarterly,pp,,,,,,unknown,50.0,国家统计局居民收入和消费支出,,,official
 existing_home_sales,二手房成交量,housing_city,monthly,套,,,,,,unknown,50.0,当地住建局/房管局/交易中心,,,manual
 home_days_on_market,二手房成交周期,housing_city,monthly,天,,,,,,unknown,50.0,当地交易数据/贝壳等补充,,,manual
 market_rent,市场租金,housing_city,quarterly,元/月,,,,,,unknown,50.0,当地官方租赁数据/平台趋势,,,manual
