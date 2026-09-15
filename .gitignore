@@ -1,3 +1,8 @@
 __pycache__/
 *.py[cod]
 .venv/
+
+# Private household finance inputs/outputs must never be published.
+data/private_household_finance.csv
+private_dist/
+*.private.csv
