@@ -27,7 +27,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: dashboard-writer
+  group: build-dashboard
   cancel-in-progress: false
 
 jobs:
@@ -52,6 +52,7 @@ jobs:
             echo "No dashboard output changes"
           else
             git commit -m "build: update generated dashboard"
+            git pull --rebase origin main
             git push
           fi
       - name: Upload dashboard artifact
