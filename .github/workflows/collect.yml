@@ -17,8 +17,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: official-data-collector
+  cancel-in-progress: false
+
 jobs:
   collect:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,15 +38,16 @@ jobs:
         run: python -m family_economic_dashboard.collect_profit
       - name: Build dashboard from collected data
         run: python -m family_economic_dashboard.cli --output dist
-      - name: Commit collected observations
+      - name: Commit collected observations and dashboard
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/official_observations.csv data/provenance.json
+          git add data/official_observations.csv data/provenance.json dist/
           if git diff --cached --quiet; then
-            echo "No observation changes"
+            echo "No official-data/dashboard changes"
           else
             git commit -m "data: collect latest official statistics"
+            git pull --rebase origin main
             git push
           fi
       - name: Upload collection artifact
