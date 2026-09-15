@@ -28,6 +28,7 @@ class TableParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
         self.rows: list[list[str]] = []
+        self.tokens: list[str] = []
         self._row: list[str] | None = None
         self._cell: list[str] | None = None
 
@@ -38,6 +39,9 @@ class TableParser(HTMLParser):
             self._cell = []
 
     def handle_data(self, data: str) -> None:
+        cleaned = _clean(data)
+        if cleaned:
+            self.tokens.append(cleaned)
         if self._cell is not None:
             self._cell.append(data)
 
@@ -68,15 +72,20 @@ def fetch_text(url: str) -> str:
     return body.decode("utf-8", errors="replace")
 
 
-def parse_market_rows(text: str) -> list[tuple[str, str, float]]:
-    parser = TableParser()
-    parser.feed(text)
+def _is_salary(value: str) -> bool:
+    compact = value.replace(" ", "")
+    if not re.fullmatch(r"\d+(?:\.\d+)?", compact):
+        return False
+    x = float(compact)
+    return 0.1 <= x <= 10.0
+
+
+def _parse_tables(parser: TableParser) -> list[tuple[str, str, float]]:
     result: list[tuple[str, str, float]] = []
     current_scope: str | None = None
     seen: set[tuple[str, str]] = set()
     for raw in parser.rows:
-        cells = [_clean(x) for x in raw]
-        cells = [x for x in cells if x != ""]
+        cells = [_clean(x) for x in raw if _clean(x)]
         if not cells:
             continue
         job = salary_text = None
@@ -89,17 +98,52 @@ def parse_market_rows(text: str) -> list[tuple[str, str, float]]:
                 continue
         elif len(cells) == 2 and current_scope:
             job, salary_text = cells
-        if not current_scope or not job or not salary_text:
-            continue
-        compact = salary_text.replace(" ", "")
-        if not re.fullmatch(r"\d+(?:\.\d+)?", compact):
+        if not current_scope or not job or not salary_text or not _is_salary(salary_text):
             continue
         key = (current_scope, job)
-        if key in seen:
-            continue
-        seen.add(key)
-        result.append((current_scope, job, float(compact)))
+        if key not in seen:
+            seen.add(key)
+            result.append((current_scope, job, float(salary_text.replace(" ", ""))))
     return result
+
+
+def _parse_tokens(parser: TableParser) -> list[tuple[str, str, float]]:
+    tokens = parser.tokens
+    result: list[tuple[str, str, float]] = []
+    seen: set[tuple[str, str]] = set()
+    current_scope: str | None = None
+    started = False
+    for idx, token in enumerate(tokens):
+        if "重点区域" in token and "岗位" in token:
+            started = True
+        if "重点行业" in token and started:
+            current_scope = None
+            break
+        scope_hit = next((scope for scope in SCOPES if token == scope or token.endswith(scope)), None)
+        if scope_hit:
+            current_scope = scope_hit
+            started = True
+            continue
+        if not started or not current_scope or not _is_salary(token) or idx == 0:
+            continue
+        job = tokens[idx - 1]
+        if job in SCOPES or _is_salary(job) or any(x in job for x in ("单位", "季度", "平均招聘薪酬", "数字岗位名称")):
+            continue
+        key = (current_scope, job)
+        if key not in seen:
+            seen.add(key)
+            result.append((current_scope, job, float(token.replace(" ", ""))))
+    return result
+
+
+def parse_market_rows(text: str) -> tuple[list[tuple[str, str, float]], str]:
+    parser = TableParser()
+    parser.feed(text)
+    table_rows = _parse_tables(parser)
+    if len(table_rows) >= 40:
+        return table_rows, "html_table"
+    token_rows = _parse_tokens(parser)
+    return token_rows, "text_tokens"
 
 
 def collect(output: str | Path = "data/recruitment_market.csv", provenance: str | Path = "data/recruitment_provenance.json") -> None:
@@ -107,9 +151,9 @@ def collect(output: str | Path = "data/recruitment_market.csv", provenance: str 
     source_meta: list[dict[str, object]] = []
     for source in SOURCES:
         text = fetch_text(source["url"])
-        parsed = parse_market_rows(text)
+        parsed, mode = parse_market_rows(text)
         if len(parsed) < 40:
-            raise RuntimeError(f"Recruitment table parse too small for {source['period']}: {len(parsed)} rows")
+            raise RuntimeError(f"Recruitment parse too small for {source['period']}: {len(parsed)} rows via {mode}")
         for scope, job, salary in parsed:
             rows.append({
                 "period_end": source["period_end"],
@@ -121,7 +165,7 @@ def collect(output: str | Path = "data/recruitment_market.csv", provenance: str 
                 "source": source["source"],
                 "source_url": source["url"],
             })
-        source_meta.append({**source, "rows": len(parsed), "scopes": sorted({x[0] for x in parsed})})
+        source_meta.append({**source, "rows": len(parsed), "scopes": sorted({x[0] for x in parsed}), "parse_mode": mode})
 
     rows.sort(key=lambda r: (str(r["period_end"]), str(r["scope"]), str(r["job"])))
     out = Path(output)
