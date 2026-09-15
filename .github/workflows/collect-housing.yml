@@ -7,8 +7,6 @@ on:
     paths:
       - "family_economic_dashboard/collect_housing.py"
       - "family_economic_dashboard/housing.py"
-      - "tests/test_housing.py"
-      - "config/indicators.json"
       - ".github/workflows/collect-housing.yml"
   schedule:
     # 09:20 China Standard Time on the 16th of every month (01:20 UTC),
@@ -21,7 +19,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: dashboard-writer
+  group: housing-dashboard
   cancel-in-progress: false
 
 jobs:
