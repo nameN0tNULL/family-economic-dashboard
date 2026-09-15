@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - "family_economic_dashboard/collect_recruitment.py"
+      - "family_economic_dashboard/recruitment.py"
+      - "data/recruitment_searches.csv"
       - ".github/workflows/collect-recruitment.yml"
   schedule:
     # 09:10 China Standard Time on the 12th of every month (01:10 UTC)
@@ -13,9 +15,18 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: recruitment-dashboard
+  cancel-in-progress: false
 
 jobs:
-  collect:
+  collect-build-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,14 +35,27 @@ jobs:
           python-version: "3.12"
       - name: Collect official recruitment salary data
         run: python -m family_economic_dashboard.collect_recruitment
-      - name: Commit recruitment data
+      - name: Test
+        run: python -m unittest discover -s tests -v
+      - name: Build dashboard
+        run: python -m family_economic_dashboard.cli --output dist
+      - name: Commit recruitment data and dashboard
         run: |
-          if [ -z "$(git status --porcelain -- data/recruitment_market.csv data/recruitment_provenance.json)" ]; then
-            echo "No recruitment data changes"
-            exit 0
+          if [ -z "$(git status --porcelain -- data/recruitment_market.csv data/recruitment_provenance.json dist/)" ]; then
+            echo "No recruitment/dashboard changes to commit"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/recruitment_market.csv data/recruitment_provenance.json dist/
+            git commit -m "Update recruitment dashboard"
+            git push
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/recruitment_market.csv data/recruitment_provenance.json
-          git commit -m "Update recruitment market data"
-          git push
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload dashboard to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
