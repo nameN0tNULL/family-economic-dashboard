@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-14T16:04:04+00:00",
+  "collected_at": "2026-09-15T00:59:48+00:00",
   "source": "国家统计局-分省月度数据",
   "endpoint": "https://data.stats.gov.cn/dg/website/publicrelease/web/external/stream/esData",
   "root_id": "f4c6cd795fea436c807163397dd36b98",
@@ -38,8 +38,18 @@
       "name": "安徽省",
       "code": "340000000000",
       "cluster": "yangtze_river_delta"
+    },
+    {
+      "name": "广东省",
+      "code": "440000000000",
+      "cluster": "greater_bay_area_proxy"
     }
   ],
+  "cluster_scope": {
+    "jing_jin_ji": "北京+天津+河北",
+    "yangtze_river_delta": "上海+江苏+浙江+安徽",
+    "greater_bay_area_proxy": "广东全省代理；不是大湾区9市+香港+澳门精确口径"
+  },
   "series": {
     "industrial_growth": {
       "cid": "9593fb551802499683f758e0f6f45bc7",
@@ -53,11 +63,12 @@
         "北京市",
         "天津市",
         "安徽省",
+        "广东省",
         "江苏省",
         "河北省",
         "浙江省"
       ],
-      "rows_collected": 14
+      "rows_collected": 16
     },
     "fixed_asset_investment_growth": {
       "cid": "e43af1a71b2d4a768569866795ed66e2",
@@ -71,15 +82,17 @@
         "北京市",
         "天津市",
         "安徽省",
+        "广东省",
         "江苏省",
         "河北省",
         "浙江省"
       ],
-      "rows_collected": 14
+      "rows_collected": 16
     }
   },
   "notes": [
     "Current provincial retail-sales series is not available in NBS fsMonthData; retail remains a separate local-source fallback.",
-    "The only retail child found under 国内贸易 is marked (-201012) and ends at 2010-12."
+    "The only retail child found under 国内贸易 is marked (-201012) and ends at 2010-12.",
+    "Greater Bay Area monthly industrial/investment observations currently use Guangdong Province as an explicit proxy."
   ]
 }
