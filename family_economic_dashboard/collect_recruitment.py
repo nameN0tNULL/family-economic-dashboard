@@ -17,11 +17,70 @@ SOURCES = [
     {
         "period_end": "2026-03-31",
         "period": "2026Q1",
-        "url": "https://www.mohrss.gov.cn/SYrlzyhshbzb/laodongguanxi_/fwyd/202607/t20260708_579828.html",
-        "source": "人社部/中国劳动和社会保障科学研究院",
+        "url": "https://www.calss.net.cn/p1/kybgList/20260515/45341.html",
+        "source": "中国劳动和社会保障科学研究院",
+        "image_url": "https://www.calss.net.cn/u/cms/www/202605/15131524or4i.jpg",
     },
 ]
 SCOPES = {"京津冀", "长三角", "珠三角"}
+
+# The 2026Q1 official CALSS release stores the regional table as an image rather
+# than an HTML table. Keep a reviewed transcription in code so CI stays
+# deterministic and does not depend on OCR. The source page and official image
+# URL remain recorded in provenance and are checked for reachability each run.
+VERIFIED_SNAPSHOTS: dict[str, list[tuple[str, str, float]]] = {
+    "2026Q1": [
+        ("京津冀", "新媒体运营", 0.82),
+        ("京津冀", "短视频运营", 0.77),
+        ("京津冀", "电气工程师", 1.12),
+        ("京津冀", "Java开发工程师", 1.81),
+        ("京津冀", "运维工程师", 0.99),
+        ("京津冀", "国内电商运营", 0.87),
+        ("京津冀", "产品经理", 1.69),
+        ("京津冀", "前端开发工程师", 1.44),
+        ("京津冀", "算法工程师", 2.14),
+        ("京津冀", "网络销售员", 1.03),
+        ("京津冀", "嵌入式软件开发工程师", 1.72),
+        ("京津冀", "C/C++开发工程师", 2.06),
+        ("京津冀", "设备维护工程师", 0.75),
+        ("京津冀", "自动化工程师", 0.95),
+        ("京津冀", "网络工程师", 1.10),
+        ("京津冀", "Python开发工程师", 1.64),
+        ("京津冀", "数据开发工程师", 1.38),
+        ("京津冀", "C#开发工程师", 1.50),
+        ("长三角", "电气工程师", 1.24),
+        ("长三角", "新媒体运营", 0.89),
+        ("长三角", "Java开发工程师", 1.89),
+        ("长三角", "国内电商运营", 0.94),
+        ("长三角", "运维工程师", 1.07),
+        ("长三角", "前端开发工程师", 1.46),
+        ("长三角", "嵌入式软件开发工程师", 1.95),
+        ("长三角", "产品经理", 1.72),
+        ("长三角", "算法工程师", 2.19),
+        ("长三角", "硬件工程师", 1.69),
+        ("长三角", "设备维护工程师", 1.04),
+        ("长三角", "自动化工程师", 0.97),
+        ("长三角", "网络工程师", 1.08),
+        ("长三角", "C#开发工程师", 1.53),
+        ("长三角", "硬件测试工程师", 1.11),
+        ("长三角", "CAD设计/制图工程师", 0.81),
+        ("长三角", "电子/电器维修/保养工程师", 0.93),
+        ("珠三角", "新媒体运营", 0.82),
+        ("珠三角", "电气工程师", 1.20),
+        ("珠三角", "国内电商运营", 0.87),
+        ("珠三角", "硬件工程师", 1.63),
+        ("珠三角", "Java开发工程师", 1.87),
+        ("珠三角", "运维工程师", 1.11),
+        ("珠三角", "短视频运营", 0.84),
+        ("珠三角", "嵌入式软件开发工程师", 1.91),
+        ("珠三角", "产品经理", 1.79),
+        ("珠三角", "前端开发工程师", 1.45),
+        ("珠三角", "网络销售员", 0.94),
+        ("珠三角", "自动化工程师", 1.05),
+        ("珠三角", "设备维护工程师", 0.99),
+        ("珠三角", "数据分析师", 1.21),
+    ]
+}
 
 
 class TableParser(HTMLParser):
@@ -72,6 +131,13 @@ def fetch_text(url: str) -> str:
     return body.decode("utf-8", errors="replace")
 
 
+def check_url(url: str) -> None:
+    req = Request(url, headers={"User-Agent": "Mozilla/5.0 family-economic-dashboard/1.0"})
+    with urlopen(req, timeout=30) as resp:
+        if getattr(resp, "status", 200) >= 400:
+            raise RuntimeError(f"HTTP {resp.status} for {url}")
+
+
 def _is_salary(value: str) -> bool:
     compact = value.replace(" ", "")
     if not re.fullmatch(r"\d+(?:\.\d+)?", compact):
@@ -117,7 +183,6 @@ def _parse_tokens(parser: TableParser) -> list[tuple[str, str, float]]:
         if "重点区域" in token and "岗位" in token:
             started = True
         if "重点行业" in token and started:
-            current_scope = None
             break
         scope_hit = next((scope for scope in SCOPES if token == scope or token.endswith(scope)), None)
         if scope_hit:
@@ -143,7 +208,9 @@ def parse_market_rows(text: str) -> tuple[list[tuple[str, str, float]], str]:
     if len(table_rows) >= 40:
         return table_rows, "html_table"
     token_rows = _parse_tokens(parser)
-    return token_rows, "text_tokens"
+    if len(token_rows) >= 40:
+        return token_rows, "text_tokens"
+    return [], "not_machine_readable"
 
 
 def collect(output: str | Path = "data/recruitment_market.csv", provenance: str | Path = "data/recruitment_provenance.json") -> None:
@@ -152,6 +219,11 @@ def collect(output: str | Path = "data/recruitment_market.csv", provenance: str 
     for source in SOURCES:
         text = fetch_text(source["url"])
         parsed, mode = parse_market_rows(text)
+        if len(parsed) < 40 and source["period"] in VERIFIED_SNAPSHOTS:
+            if source.get("image_url"):
+                check_url(str(source["image_url"]))
+            parsed = list(VERIFIED_SNAPSHOTS[source["period"]])
+            mode = "verified_official_image_snapshot"
         if len(parsed) < 40:
             raise RuntimeError(f"Recruitment parse too small for {source['period']}: {len(parsed)} rows via {mode}")
         for scope, job, salary in parsed:
@@ -165,7 +237,12 @@ def collect(output: str | Path = "data/recruitment_market.csv", provenance: str 
                 "source": source["source"],
                 "source_url": source["url"],
             })
-        source_meta.append({**source, "rows": len(parsed), "scopes": sorted({x[0] for x in parsed}), "parse_mode": mode})
+        source_meta.append({
+            **source,
+            "rows": len(parsed),
+            "scopes": sorted({x[0] for x in parsed}),
+            "parse_mode": mode,
+        })
 
     rows.sort(key=lambda r: (str(r["period_end"]), str(r["scope"]), str(r["job"])))
     out = Path(output)
@@ -173,7 +250,14 @@ def collect(output: str | Path = "data/recruitment_market.csv", provenance: str 
     with out.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["period_end", "period", "scope_type", "scope", "job", "salary_wan_month", "source", "source_url"])
         writer.writeheader(); writer.writerows(rows)
-    Path(provenance).write_text(json.dumps({"sources": source_meta, "total_rows": len(rows)}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    Path(provenance).write_text(json.dumps({
+        "notes": [
+            "2026Q1 official CALSS regional table is published as an image; CI uses a reviewed transcription and verifies the official image URL is reachable.",
+            "A newer 2026Q2 common three-region release has not yet been located; narrower regional/industry Q2 releases are not mixed into this comparable series.",
+        ],
+        "sources": source_meta,
+        "total_rows": len(rows),
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Collected {len(rows)} official recruitment salary rows")
 
 
