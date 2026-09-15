@@ -91,6 +91,23 @@ def discover_article(index_url: str, matcher: Callable[[str], bool]) -> tuple[st
     raise RuntimeError(f"No matching article found at {index_url}")
 
 
+def discover_paginated_article(archive_url: str, matcher: Callable[[str], bool], max_pages: int = 8) -> tuple[str, str]:
+    base = archive_url if archive_url.endswith("/") else archive_url + "/"
+    pages = [urljoin(base, "index.html")] + [urljoin(base, f"index_{i}.html") for i in range(1, max_pages + 1)]
+    errors: list[str] = []
+    for page_url in pages:
+        try:
+            parser = parse_page(fetch_html(page_url))
+        except Exception as exc:
+            errors.append(f"{page_url}: {type(exc).__name__}")
+            continue
+        for href, text in parser.links:
+            if matcher(text) and href and not href.lower().startswith(("javascript:", "#")):
+                return urljoin(page_url, href), text
+    detail = "; ".join(errors[-3:]) if errors else "no matching links"
+    raise RuntimeError(f"No matching article found in paginated archive {archive_url}; {detail}")
+
+
 def publication_year(text: str, title: str) -> int:
     m = re.search(r"(20\d{2})年", title)
     if m:
@@ -116,6 +133,8 @@ def period_end(title: str, text: str) -> date:
         month = 6
     elif "一季度" in combined:
         month = 3
+    elif "全年" in combined or "年度" in combined:
+        month = 12
     else:
         m = re.search(r"20\d{2}年\s*(\d{1,2})\s*月", title)
         if not m:
@@ -136,6 +155,14 @@ def extract_signed_pct(text: str, pattern: str) -> float:
     if not m:
         raise ValueError(f"Pattern did not match: {pattern}")
     return signed(m.group(1), m.group(2))
+
+
+def extract_household_real_growth(text: str) -> tuple[float, float]:
+    income = re.search(r"全国居民人均可支配收入[^。]*?实际(增长|下降)([0-9.]+)%", text)
+    consumption = re.search(r"全国居民人均消费支出[^。]*?实际(增长|下降)([0-9.]+)%", text)
+    if not income or not consumption:
+        raise ValueError("real household income/consumption growth was not parsed")
+    return signed(income.group(1), income.group(2)), signed(consumption.group(1), consumption.group(2))
 
 
 def amount_to_yi(direction: str, number: str, unit: str) -> float:
@@ -159,16 +186,11 @@ def collect_nbs_macro(index_url: str) -> tuple[list[Observation], dict]:
     return obs, {"source": "国家统计局-国民经济运行", "title": title, "url": url, "period": d.isoformat(), "indicators": [o.indicator for o in obs]}
 
 
-def collect_nbs_household(index_url: str) -> tuple[list[Observation], dict]:
-    url, title = discover_article(index_url, lambda t: "居民收入" in t and "消费支出" in t)
+def collect_nbs_household(archive_url: str) -> tuple[list[Observation], dict]:
+    url, title = discover_paginated_article(archive_url, lambda t: "居民收入" in t and "消费支出" in t)
     text = parse_page(fetch_html(url)).text
     d = period_end(title, text)
-    income = re.search(r"全国居民人均可支配收入[^。]*?实际(增长|下降)([0-9.]+)%", text)
-    consumption = re.search(r"全国居民人均消费支出[^。]*?实际(增长|下降)([0-9.]+)%", text)
-    if not income or not consumption:
-        raise ValueError("NBS household page found but real income/consumption growth was not parsed")
-    income_real = signed(income.group(1), income.group(2))
-    consumption_real = signed(consumption.group(1), consumption.group(2))
+    income_real, consumption_real = extract_household_real_growth(text)
     gap = income_real - consumption_real
     obs = [
         Observation(
@@ -281,7 +303,7 @@ def main() -> None:
     collected_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     jobs = [
         ("nbs_macro", collect_nbs_macro, cfg["nbs_index"]),
-        ("nbs_household", collect_nbs_household, cfg["nbs_index"]),
+        ("nbs_household", collect_nbs_household, cfg["nbs_release_archive"]),
         ("nbs_profit", collect_nbs_profit, cfg["nbs_index"]),
         ("mof", collect_mof, cfg["mof_index"]),
         ("pbc", collect_pbc, cfg["pbc_index"]),
