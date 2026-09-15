@@ -11,6 +11,12 @@ on:
       - "family_economic_dashboard/recruitment.py"
       - "family_economic_dashboard/collect_recruitment.py"
       - ".github/workflows/collect-recruitment.yml"
+      - "data/housing_city_prices.csv"
+      - "data/housing_observations.csv"
+      - "data/housing_provenance.json"
+      - "family_economic_dashboard/housing.py"
+      - "family_economic_dashboard/collect_housing.py"
+      - ".github/workflows/collect-housing.yml"
   pull_request:
   workflow_dispatch:
   schedule:
@@ -19,6 +25,10 @@ on:
 
 permissions:
   contents: write
+
+concurrency:
+  group: dashboard-writer
+  cancel-in-progress: false
 
 jobs:
   build:
