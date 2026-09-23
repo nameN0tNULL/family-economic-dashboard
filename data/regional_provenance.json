@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-15T01:03:40+00:00",
+  "collected_at": "2026-09-23T05:09:54+00:00",
   "source": "国家统计局-分省月度数据",
   "endpoint": "https://data.stats.gov.cn/dg/website/publicrelease/web/external/stream/esData",
   "root_id": "f4c6cd795fea436c807163397dd36b98",
@@ -84,7 +84,7 @@
       "label": "工业增加值累计增长 (%)",
       "unit": "%",
       "latest_catalog_period": "202608",
-      "latest_nonblank_date": "2026-07-31",
+      "latest_nonblank_date": "2026-08-31",
       "regions_on_latest_nonblank_date": [
         "上海市",
         "北京市",
@@ -100,7 +100,7 @@
         "湖南省",
         "重庆市"
       ],
-      "rows_collected": 26
+      "rows_collected": 39
     },
     "fixed_asset_investment_growth": {
       "cid": "e43af1a71b2d4a768569866795ed66e2",
@@ -108,7 +108,7 @@
       "label": "固定资产投资完成额累计增长 (%)",
       "unit": "%",
       "latest_catalog_period": "202608",
-      "latest_nonblank_date": "2026-07-31",
+      "latest_nonblank_date": "2026-08-31",
       "regions_on_latest_nonblank_date": [
         "上海市",
         "北京市",
@@ -124,7 +124,7 @@
         "湖南省",
         "重庆市"
       ],
-      "rows_collected": 26
+      "rows_collected": 39
     }
   },
   "notes": [
