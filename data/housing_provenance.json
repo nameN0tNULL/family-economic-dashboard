@@ -1,11 +1,11 @@
 {
-  "collected_at": "2026-10-16T05:52:41+00:00",
+  "collected_at": "2026-11-16T07:59:25+00:00",
   "sources": [
     {
       "source": "国家统计局-70个大中城市商品住宅销售价格",
-      "title": "2026年8月份70个大中城市商品住宅销售价格变动情况",
-      "url": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965304.html",
-      "period": "2026-08-31",
+      "title": "2026年10月份70个大中城市商品住宅销售价格变动情况",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202611/t20261116_1965836.html",
+      "period": "2026-10-31",
       "city_count": 70,
       "row_count": 140,
       "markets": {
@@ -15,14 +15,14 @@
     },
     {
       "source": "国家统计局-全国房地产市场基本情况",
-      "title": "2026年1—8月份全国房地产市场基本情况",
-      "url": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965310.html",
-      "period": "2026-08-31",
+      "title": "2026年1—10月份全国房地产市场基本情况",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202611/t20261116_1965840.html",
+      "period": "2026-10-31",
       "indicators": {
-        "national_real_estate_investment_yoy": -19.9,
-        "national_new_home_sales_area_yoy": -12.1,
-        "national_second_hand_net_sign_area_yoy": 10.6,
-        "national_developer_funding_yoy": -21.0
+        "national_real_estate_investment_yoy": -21.6,
+        "national_new_home_sales_area_yoy": -13.7,
+        "national_second_hand_net_sign_area_yoy": 11.4,
+        "national_developer_funding_yoy": -21.9
       }
     }
   ],
