@@ -1,11 +1,11 @@
 {
-  "collected_at": "2026-09-23T07:54:47+00:00",
+  "collected_at": "2026-11-23T11:00:55+00:00",
   "sources": [
     {
       "source": "国家统计局-国民经济运行",
-      "title": "8月份国民经济运行平稳、发展向新向优",
-      "url": "https://www.stats.gov.cn/sj/zxfb/202609/t20260915_1965307.html",
-      "period": "2026-08-31",
+      "title": "10月份国民经济运行总体平稳、向新向优",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202611/t20261116_1965844.html",
+      "period": "2026-10-31",
       "indicators": [
         "private_investment",
         "urban_unemployment_rate"
@@ -13,12 +13,12 @@
     },
     {
       "source": "国家统计局-居民收入和消费支出",
-      "title": "2026年上半年居民收入和消费支出情况",
-      "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202607/t20260715_1964129.html",
-      "period": "2026-06-30",
-      "real_income_yoy": 4.2,
+      "title": "2026年前三季度居民收入和消费支出情况",
+      "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202610/t20261019_1965612.html",
+      "period": "2026-09-30",
+      "real_income_yoy": 4.4,
       "real_consumption_yoy": 2.7,
-      "income_consumption_gap_pp": 1.5,
+      "income_consumption_gap_pp": 1.7000000000000002,
       "indicators": [
         "national_real_disposable_income_yoy",
         "national_income_consumption_gap_pp"
@@ -26,9 +26,9 @@
     },
     {
       "source": "中国人民银行-金融统计数据报告",
-      "title": "2026年8月金融统计数据报告",
-      "url": "https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026091417020862747/index.html",
-      "period": "2026-08-31",
+      "title": "2026年10月金融统计数据报告",
+      "url": "https://www.pbc.gov.cn/diaochatongjisi/116219/116225/2026111317040354319/index.html",
+      "period": "2026-10-31",
       "indicators": [
         "household_long_term_loans",
         "corp_long_term_loans"
@@ -36,9 +36,9 @@
     },
     {
       "source": "国家统计局-工业企业利润",
-      "title": "2026年1—7月份全国规模以上工业企业利润增长17.6%",
-      "url": "https://www.stats.gov.cn/sj/zxfb/202608/t20260827_1965126.html",
-      "period": "2026-07-31",
+      "title": "2026年1—9月份全国规模以上工业企业利润增长15.5%",
+      "url": "https://www.stats.gov.cn/sj/zxfb/202610/t20261027_1965697.html",
+      "period": "2026-09-30",
       "indicators": [
         "private_profit",
         "industrial_receivables_days"
